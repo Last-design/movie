@@ -1,0 +1,228 @@
+<!-- about.html - updated with logo left, nav right, logo links to home, hover animation -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us - MoviePulse247</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+    body {
+        margin: 0;
+        font-family: 'Poppins', sans-serif;
+        background: black;
+        color: white;
+    }
+
+    .video-bg {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: -1;
+        opacity: 0.25;
+    }
+
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 40px;
+        background: rgba(0,0,0,0.85);
+        border-bottom: 1px solid red;
+    }
+
+    .logo {
+        font-size: 28px;
+        font-weight: 600;
+        color: red;
+        text-decoration: none;
+        transition: transform 0.3s ease, color 0.3s ease;
+    }
+    .logo:hover { transform: rotate(-10deg) scale(1.1); color:#ff4c4c; }
+
+    .navbar ul {
+        list-style: none;
+        display: flex;
+        gap: 25px;
+        margin: 0;
+        padding: 0;
+    }
+    .navbar ul li a {
+        color: white;
+        text-decoration: none;
+        font-size: 16px;
+    }
+    .navbar ul li a:hover,
+    .navbar ul li a.active {
+        color: red;
+        border-bottom: 2px solid red;
+        padding-bottom: 2px;
+    }
+
+    .content-box {
+        max-width: 900px;
+        margin: 120px auto;
+        padding: 40px;
+        background: rgba(0,0,0,0.85);
+        border-radius: 12px;
+        box-shadow: 0 0 20px red;
+    }
+
+    h1, h2 {
+        color: red;
+        text-align: center;
+    }
+
+    p {
+        line-height: 1.7;
+        font-size: 17px;
+    }
+
+    .terms-link {
+        color: #ff4444;
+        text-decoration: underline;
+        cursor: pointer;
+    }
+
+    footer {
+        margin-top: 40px;
+        text-align: center;
+        padding: 30px 0;
+        color: #ccc;
+        border-top: 1px solid red;
+        background: rgba(0,0,0,0.85);
+    }
+
+    .popup {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: black;
+    }
+
+    .popup-content {
+        background: #fff;
+        margin: 10% auto;
+        padding: 20px;
+        width: 80%;
+        max-width: 500px;
+        border-radius: 10px;
+        text-align: left;
+        color: #000;
+    }
+
+    .close-btn {
+        float: right;
+        font-size: 25px;
+        cursor: pointer;
+    }
+</style>
+</head>
+
+<body>
+
+<header>
+    <a href="index.html" class="logo">🎬 MoviePulse247</a>
+    <nav class="navbar">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="poster.html">movies</a></li>
+            <li><a href="about.html" class="active">About</a></li>
+        </ul>
+    </nav>
+</header>
+
+<div class="content-box">
+
+    <h1>About MoviePulse247</h1>
+
+    <p>
+        Welcome to <strong>MoviePulse247</strong>, your daily destination for movie news, 
+        fresh trailers, reviews, and upcoming releases. Our goal is to bring movie fans the latest 
+        and most accurate updates in a clean, fast, and easy-to-read format.
+    </p>
+
+    <p>
+        We are passionate about cinema, storytelling, and helping movie lovers stay informed 24/7.
+    </p>
+
+    <p>
+        To read our Terms & Conditions, click here:
+        <a href="#terms" class="terms-link" id="openTerms">Go to Terms & Conditions</a>
+    </p>
+
+    <br><br><hr><br>
+
+    <h2 id="terms">Terms & Conditions</h2>
+
+    <p>
+        By using <strong>MoviePulse247</strong>, you agree to the following Terms & Conditions.
+    </p>
+
+    <p><strong>1. Content Usage</strong><br>
+        All movie posters, trailers, and brand names belong to their respective owners. 
+        MoviePulse247 only shares previews and informational content.
+    </p>
+
+    <p><strong>2. User Responsibilities</strong><br>
+        • Do not copy or repost our content without permission.<br>
+        • Do not attempt to harm or disrupt the website.<br>
+        • Do not upload malicious code or harmful files.
+    </p>
+
+    <p><strong>3. External Links</strong><br>
+        Our site may include links to streaming platforms such as Prime Video.  
+        We are not responsible for their content or privacy practices.
+    </p>
+
+    <p><strong>4. Disclaimer</strong><br>
+        All information is provided “as-is” and for entertainment purposes only.
+    </p>
+
+    <p><strong>5. Updates to Terms</strong><br>
+        We may update these terms from time to time. Continuing to use the site means you accept the changes.
+    </p>
+
+</div>
+
+<footer>
+    © 2025 MoviePulse247 — All Rights Reserved
+</footer>
+
+<div id="termsPopup" class="popup">
+  <div class="popup-content">
+    <span class="close-btn" id="closeTerms">&times;</span>
+    <h2>Terms & Conditions</h2>
+    <p>
+      These are the terms and conditions of our website.  
+      You agree not to misuse the website, copy content without permission,  
+      or perform any illegal activities. We may update these terms anytime.  
+    </p>
+  </div>
+</div>
+
+<script>
+document.getElementById("openTerms").onclick = function() {
+  document.getElementById("termsPopup").style.display = "block";
+};
+
+document.getElementById("closeTerms").onclick = function() {
+  document.getElementById("termsPopup").style.display = "none";
+};
+
+window.onclick = function(event) {
+  if (event.target == document.getElementById("termsPopup")) {
+    document.getElementById("termsPopup").style.display = "none";
+  }
+};
+</script>
+
+</body>
+</html>
