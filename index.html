@@ -15,6 +15,15 @@
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
+    body {
+    background-image: url('mali.jpg');
+    background-size: cover;      /* makes it cover the whole screen */
+    background-position: center; /* centers the image */
+    background-repeat: no-repeat; /* prevents it from repeating */
+    height: 100vh;               /* makes sure body takes full viewport height */
+    margin: 0;                   /* removes default margin */
+}
+
 
 /* Header */
 header {
@@ -96,13 +105,7 @@ nav a.active::after {
 
 /* HERO SECTION */
 .hero {
-    height: 75vh; /* controls how tall the section is */
-    max-height: 650px; /* prevents it from becoming huge on big screens */
-
-    background-image:
-        linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.85)),
-        url("mali.jpg");
-
+    
     background-repeat: no-repeat;
     background-position: center center;
     background-size: contain; /* THIS stops the zoom */
@@ -213,6 +216,7 @@ nav a.active::after {
 
 </body>
 </html>
+
 
 
 
