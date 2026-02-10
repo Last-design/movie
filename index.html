@@ -36,7 +36,8 @@
         backdrop-filter: blur(6px);
         box-sizing: border-box;
     }
-
+.nav-links a:hover {
+    text-shadow: 0 0 8px rgba(255, 31, 31, 0.8);
     .logo {
         display: flex;
         flex-direction: column;
@@ -76,16 +77,15 @@
         color: var(--accent);
     }
 
-    nav a.active::after {
-        content: "";
-        position: absolute;
-        left: 0;
-        bottom: -2px;
-        width: 100%;
-        height: 2px;
-        background: var(--accent);
-        border-radius: 2px;
-    }
+  .nav-links a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 0;
+    height: 2px;
+    background: #ff1f1f;
+    transition: width 0.3s ease;
 
     nav a:hover {
         color: var(--accent);
@@ -227,4 +227,5 @@
 
 </body>
 </html>
+
 
