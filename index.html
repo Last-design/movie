@@ -96,22 +96,29 @@ nav a.active::after {
 
 /* HERO SECTION */
 .hero {
-    min-height: 90vh;
+    height: 75vh; /* controls how tall the section is */
+    max-height: 650px; /* prevents it from becoming huge on big screens */
+
     background-image:
-        linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.9)),
+        linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.85)),
         url("mali.jpg");
-    background-position: center;
+
     background-repeat: no-repeat;
-    background-size: cover;   /* fits nicely without being too big */
-    
+    background-position: center center;
+    background-size: contain; /* THIS stops the zoom */
+
+    background-color: black; /* fills empty space if image doesn't fill */
+
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+
     text-align: center;
     color: white;
-    padding: 20px;
+    padding: 40px 20px;
 }
+
 
 
 .hero h1 {
@@ -206,6 +213,7 @@ nav a.active::after {
 
 </body>
 </html>
+
 
 
 
