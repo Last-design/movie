@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Articles | MoviePulse247</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #000;
+      color: #fff;
+    }
+    header {
+      background-color: #c70000; /* Red header */
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+    h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 20px auto;
+    }
+    .articles-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    .article-card {
+      background-color: #1a1a1a; /* Dark card */
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(255,0,0,0.3);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .article-card:hover {
+      transform: scale(1.02);
+      box-shadow: 0 4px 16px rgba(255,0,0,0.5);
+    }
+    .article-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-bottom: 2px solid #c70000;
+    }
+    .article-content {
+      padding: 15px;
+    }
+    .article-content h2 {
+      font-size: 1.2rem;
+      margin: 0 0 10px 0;
+      color: #ff0000;
+    }
+    .article-content p {
+      font-size: 0.95rem;
+      line-height: 1.4;
+      color: #ddd;
+    }
+    .article-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 15px 15px 15px;
+      font-size: 0.85rem;
+      color: #aaa;
+    }
+    .read-more {
+      text-decoration: none;
+      color: #ff0000;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Latest Articles</h1>
+</header>
+
+<div class="container">
+  <div class="articles-grid">
+
+    <!-- Article 1 -->
+    <div class="article-card">
+      <img src="https://via.placeholder.com/400x180.png?text=War+Machine" alt="War Machine">
+      <div class="article-content">
+        <h2>War Machine: Alan Ritchson's Action Thriller</h2>
+        <p>Alan Ritchson stars in the high-octane action movie “War Machine,” showcasing intense battles, strategic missions, and stunning cinematography.</p>
+      </div>
+      <div class="article-footer">
+        <span>March 20, 2026</span>
+        <a href="/articles/war-machine-alan-ritchson" class="read-more">Read More</a>
+      </div>
+    </div>
+
+    <!-- Article 2 -->
+    <div class="article-card">
+      <img src="https://via.placeholder.com/400x180.png?text=The+Lost+Galaxy" alt="The Lost Galaxy">
+      <div class="article-content">
+        <h2>The Lost Galaxy: Sci-Fi Adventure Review</h2>
+        <p>Explore the breathtaking universe of “The Lost Galaxy,” a sci-fi adventure filled with unexpected twists, epic space battles, and memorable characters.</p>
+      </div>
+      <div class="article-footer">
+        <span>March 18, 2026</span>
+        <a href="/articles/the-lost-galaxy-review" class="read-more">Read More</a>
+      </div>
+    </div>
+
+    <!-- Article 3 -->
+    <div class="article-card">
+      <img src="https://via.placeholder.com/400x180.png?text=Hollywood+News" alt="Hollywood News">
+      <div class="article-content">
+        <h2>Hollywood Stars Making a Comeback in 2026</h2>
+        <p>Discover which Hollywood stars are returning to the big screen this year and what exciting projects fans should look forward to.</p>
+      </div>
+      <div class="article-footer">
+        <span>March 15, 2026</span>
+        <a href="/articles/hollywood-stars-comeback" class="read-more">Read More</a>
+      </div>
+    </div>
+
+    <!-- Article 4 -->
+    <div class="article-card">
+      <img src="https://via.placeholder.com/400x180.png?text=Top+Box+Office" alt="Top Box Office">
+      <div class="article-content">
+        <h2>Top Box Office Hits of March 2026</h2>
+        <p>A full list of this month’s top-grossing movies, including action-packed blockbusters and fan-favorite sequels dominating theaters worldwide.</p>
+      </div>
+      <div class="article-footer">
+        <span>March 14, 2026</span>
+        <a href="/articles/top-box-office-march-2026" class="read-more">Read More</a>
+      </div>
+    </div>
+
+    <!-- Article 5 -->
+    <div class="article-card">
+      <img src="https://via.placeholder.com/400x180.png?text=Indie+Movies" alt="Indie Movies">
+      <div class="article-content">
+        <h2>Must-Watch Indie Movies This Year</h2>
+        <p>Indie movies are taking the spotlight! Check out these hidden gems that offer compelling stories and extraordinary performances.</p>
+      </div>
+      <div class="article-footer">
+        <span>March 10, 2026</span>
+        <a href="/articles/must-watch-indie-movies" class="read-more">Read More</a>
+      </div>
+    </div>
+
+    <!-- Article 6 -->
+    <div class="article-card">
+      <img src="https://via.placeholder.com/400x180.png?text=Movie+Trailers" alt="Movie Trailers">
+      <div class="article-content">
+        <h2>New Movie Trailers You Can't Miss</h2>
+        <p>From thrillers to comedies, check out the latest movie trailers and get a first look at upcoming releases that will hit the big screens soon.</p>
+      </div>
+      <div class="article-footer">
+        <span>March 8, 2026</span>
+        <a href="/articles/new-movie-trailers" class="read-more">Read More</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>
