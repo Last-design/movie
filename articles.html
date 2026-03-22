@@ -79,8 +79,22 @@
 </head>
 <body>
 
-<header>
-  <h1>Latest Articles</h1>
+<header class="nav">
+  <div class="logo" onclick="location.href='index.html'">
+    <span style="color:var(--accent)">MoviePulse</span>
+    <span class="slogan">Feel the Beat of Cinema</span>
+  </div>
+
+  <div class="search-wrap">
+    <input id="searchInput" placeholder="Search movies..." />
+  </div>
+
+  <nav class="links">
+    <a href="index.html">home</a>
+    <a href="articles.html" class="active">articles</a>
+       <a href="contact.html">contact</a>
+    <a href="about.html">about</a>
+  </nav>
 </header>
 
 <div class="container">
