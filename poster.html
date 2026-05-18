@@ -100,23 +100,7 @@ nav a.active::after {
   font-family: Arial, sans-serif;
 }
 
-.loader {
-  position: relative;
-  text-align: center;
-  color: white;
-}
 
-.orbit {
-  width: 120px;
-  height: 120px;
-  border: 2px solid rgba(255, 0, 0, 0.2);
-  border-radius: 50%;
-  position: relative;
-  animation: spin 2s linear infinite;
-  margin: auto;
-}
-
-.dot {
   width: 12px;
   height: 12px;
   background: red;
@@ -128,48 +112,9 @@ nav a.active::after {
   box-shadow: 0 0 20px red;
 }
 
-.core {
-  width: 20px;
-  height: 20px;
-  background: red;
-  border-radius: 50%;
-  margin: -70px auto 10px;
-  animation: pulse 1.2s ease-in-out infinite;
-  box-shadow: 0 0 25px red;
-}
-
-h2 {
-  font-size: 14px;
-  letter-spacing: 3px;
-  opacity: 0.7;
-}
-
-@keyframes spin {
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes pulse {
-  0%, 100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-  50% {
-    transform: scale(1.4);
-    opacity: 0.5;
-  }
-}
 </style>
 </head>
 <body>
- <div class="loader">
-  <div class="orbit">
-    <div class="dot"></div>
-  </div>
-  <div class="core"></div>
-  <h2>Loading...</h2>
-</div>
 
 <header class="nav">
   <div class="logo" onclick="location.href='index.html'">
