@@ -124,10 +124,49 @@
         font-size: 25px;
         cursor: pointer;
     }
+        #loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.spinner {
+  width: 90px;
+  height: 90px;
+  border: 6px solid #222;
+  border-top: 6px solid red;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+#loader h2 {
+  color: red;
+  margin-top: 20px;
+  font-family: Arial;
+  letter-spacing: 3px;
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
 </style>
 </head>
 
 <body>
+        <div id="loader">
+  <div class="spinner"></div>
+  <h2>MoviePulse</h2>
+</div>
 
 <header>
     <a href="index.html" class="logo">🎬 MoviePulse247</a>
@@ -286,6 +325,13 @@ window.onclick = function(event) {
   }
 };
 </script>
+        <script>
+        window.addEventListener("load", function () {
+  setTimeout(() => {
+    document.getElementById("loader").style.display = "none";
+  }, 2500);
+});
+        </script>
 
 </body>
 </html>
