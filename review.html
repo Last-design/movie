@@ -85,7 +85,6 @@ nav a.active::after {
       
       
   <nav style="display:flex;gap:12px">
-          <div class="menu-icon" onclick="toggleMenu()">☰</div>
         
         <a href="index.html" style="color:#fff;text-decoration:none;font-weight:600">home</a>
        <a href="review.html" style="color:#fff;text-decoration:none;font-weight:600" class = "active">review</a>
@@ -455,11 +454,6 @@ rating:4
   });
 
   function goTrailer(id){ location.href = `trailer.html?id=${encodeURIComponent(id)}`; }
-</script>
-<script>
-function toggleMenu() {
-  document.getElementById("menu").classList.toggle("show");
-}
 </script>
 </body>
 </html>
