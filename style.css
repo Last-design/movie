@@ -1,18 +1,18 @@
-/* HAMBURGER ICON */
+/* hide menu on mobile */
 .menu-icon {
   display: none;
-  font-size: 28px;
+  font-size: 30px;
   cursor: pointer;
 }
 
-/* DESKTOP MENU */
+/* desktop menu */
 nav ul {
   display: flex;
   gap: 20px;
   list-style: none;
 }
 
-/* 📱 MOBILE */
+/* mobile */
 @media (max-width: 768px) {
 
   .menu-icon {
@@ -22,10 +22,10 @@ nav ul {
   nav ul {
     display: none;
     flex-direction: column;
+    background: black;
     position: absolute;
     top: 60px;
     right: 0;
-    background: black;
     width: 200px;
     padding: 10px;
   }
