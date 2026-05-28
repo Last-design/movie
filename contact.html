@@ -129,6 +129,9 @@ footer{
     margin-top:60px;
     border-top:2px solid #ff1f1f;
 }
+        textarea{
+    resize: none;
+}
 </style>
 
 </head>
@@ -157,7 +160,7 @@ footer{
     <p>Have questions, suggestions, or feedback? Reach out to the MoviePulse team.</p>
 
 <div class="contact-form">
-<form name="contact" method="POST" action="thank.html" class="contact-form"> 
+<form id = "contact-form" name="contact" method="POST" action="thank.html" class="contact-form"> 
         
   <input type="hidden" name="form-name" value="contact">
   <input type="hidden" name="bot-field">
