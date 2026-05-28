@@ -157,10 +157,8 @@ footer{
     <p>Have questions, suggestions, or feedback? Reach out to the MoviePulse team.</p>
 
 <div class="contact-form">
-<form name="contact"
-      method="POST"
-      action="thank.html"
-      class="contact-form"> 
+<form name="contact" method="POST" action="thank.html" class="contact-form"> 
+        
   <input type="hidden" name="form-name" value="contact">
   <input type="hidden" name="bot-field">
 
@@ -172,6 +170,26 @@ footer{
   
   <button type="submit">Send Message</button>
 </form>
+        <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+<script>
+emailjs.init("YOUR_PUBLIC_KEY");
+
+document.getElementById("contact-form")
+.addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    emailjs.sendForm(
+        "YOUR_SERVICE_ID",
+        "YOUR_TEMPLATE_ID",
+        this
+    ).then(function() {
+        alert("Message sent successfully!");
+    }, function(error) {
+        alert("Failed to send message");
+    });
+});
+</script>
 </div>
 
 
