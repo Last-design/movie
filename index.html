@@ -1,314 +1,676 @@
+# MoviePulse Collider-Style Homepage
+
+Replace your current homepage with this improved cinematic version.
+
+```html
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MoviePulse – Home</title>
-    <link rel="icon" type="image/png" href="moviepulse (2).png">
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+<link rel="icon" type="image/png" href="moviepulse (2).png">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-}
-    body {
-    background-image: url('mali.jpg');
-    background-size: cover;      /* makes it cover the whole screen */
-    background-position: center; /* centers the image */
-    background-repeat: no-repeat; /* prevents it from repeating */
-    height: 100vh;               /* makes sure body takes full viewport height */
-    margin: 0;                   /* removes default margin */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
 }
 
-
-/* Header */
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 18px 50px;
-    background: rgba(0, 0, 0, 0.95);
-    border-bottom: 2px solid #ff1f1f;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
+body{
+    background:#050505;
+    color:white;
 }
 
-/* Logo */
-.logo {
-    cursor: pointer;
+html{
+    scroll-behavior:smooth;
 }
 
-.movie-name {
-    display: block;
-    font-size: 26px;
-    font-weight: 700;
-    color: #ff1f1f;
+/* HEADER */
+header{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    z-index:1000;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 7%;
+    background:rgba(0,0,0,0.85);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(255,255,255,0.08);
 }
 
-.slogan {
-    display: block;
-    font-size: 12px;
-    color: #aaa;
-    margin-top: 2px;
+.logo{
+    cursor:pointer;
 }
 
-/* Nav */
-nav {
-    display: flex;
-    gap: 30px;
+.movie-name{
+    display:block;
+    color:#ff1f1f;
+    font-size:30px;
+    font-weight:700;
 }
 
-/* Nav links */
-nav a {
-    text-decoration: none;
-    color: #ddd;
-    font-size: 16px;
-    font-weight: 500;
-    position: relative;
-    transition: color 0.3s ease;
+.slogan{
+    color:#999;
+    font-size:12px;
 }
 
-/* Hover effect */
-nav a:hover {
-    color: #ff1f1f;
+nav{
+    display:flex;
+    gap:35px;
 }
 
-/* Underline animation */
-nav a::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -6px;
-    width: 0;
-    height: 2px;
-    background: #ff1f1f;
-    transition: width 0.3s ease;
+nav a{
+    color:#ddd;
+    text-decoration:none;
+    font-size:15px;
+    position:relative;
+    transition:0.3s ease;
 }
 
-nav a:hover::after {
-    width: 100%;
+nav a:hover,
+nav a.active{
+    color:#ff1f1f;
 }
 
-/* Active page */
-nav a.active {
-    color: #ff1f1f;
+nav a::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:-8px;
+    width:0;
+    height:2px;
+    background:#ff1f1f;
+    transition:0.3s ease;
 }
 
-nav a.active::after {
-    width: 100%;
+nav a:hover::after,
+nav a.active::after{
+    width:100%;
 }
 
-/* HERO SECTION */
-.hero {
+/* HERO */
+.hero{
+    height:100vh;
+    background:
+    linear-gradient(to top,
+    rgba(0,0,0,0.95),
+    rgba(0,0,0,0.45)),
+    url('mali.jpg');
 
-    text-align: center;
-    color: white;
-    padding: 40px 20px;
+    background-size:cover;
+    background-position:center;
+    display:flex;
+    align-items:center;
+    padding:0 7%;
 }
 
-
-
-.hero h1 {
-    font-size: 48px;
-    margin-bottom: 15px;
+.hero-content{
+    max-width:700px;
 }
 
-.hero p {
-    font-size: 18px;
-    max-width: 600px;
-    color: #ddd;
-    margin-bottom: 30px;
+.featured-tag{
+    display:inline-block;
+    background:#ff1f1f;
+    padding:10px 18px;
+    border-radius:40px;
+    font-size:13px;
+    font-weight:600;
+    letter-spacing:1px;
+    margin-bottom:25px;
 }
 
-/* Button */
-.posters-btn {
-    padding: 14px 30px;
-    font-size: 16px;
-    font-weight: 600;
-    border: none;
-    border-radius: 6px;
-    background: #ff1f1f;
-    color: white;
-    cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+.hero h1{
+    font-size:78px;
+    line-height:1.1;
+    margin-bottom:25px;
 }
 
-.posters-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 25px rgba(255, 31, 31, 0.5);
+.hero p{
+    color:#ddd;
+    line-height:1.9;
+    font-size:18px;
+    margin-bottom:35px;
+}
+
+.hero-buttons{
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.watch-btn,
+.info-btn{
+    padding:15px 32px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:16px;
+    font-weight:600;
+    transition:0.3s ease;
+}
+
+.watch-btn{
+    background:#ff1f1f;
+    color:white;
+}
+
+.info-btn{
+    background:rgba(255,255,255,0.1);
+    border:1px solid rgba(255,255,255,0.15);
+    color:white;
+}
+
+.watch-btn:hover,
+.info-btn:hover{
+    transform:translateY(-5px);
+}
+
+/* TRENDING */
+.trending{
+    padding:90px 7%;
+}
+
+.section-title{
+    font-size:42px;
+    margin-bottom:40px;
+}
+
+.movie-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:28px;
+}
+
+.movie-card{
+    background:#111;
+    border-radius:18px;
+    overflow:hidden;
+    transition:0.4s ease;
+    cursor:pointer;
+}
+
+.movie-card img{
+    width:100%;
+    height:340px;
+    object-fit:cover;
+}
+
+.movie-info{
+    padding:18px;
+}
+
+.movie-info h3{
+    margin-bottom:10px;
+}
+
+.movie-info p{
+    color:#aaa;
+    font-size:14px;
+}
+
+.movie-card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 20px 45px rgba(255,31,31,0.25);
+}
+
+/* FEATURED NEWS */
+.news-section{
+    padding:20px 7% 90px;
+}
+
+.news-grid{
+    display:grid;
+    grid-template-columns:2fr 1fr;
+    gap:30px;
+}
+
+.big-news{
+    position:relative;
+    border-radius:20px;
+    overflow:hidden;
+    min-height:500px;
+}
+
+.big-news img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.big-news-content{
+    position:absolute;
+    bottom:0;
+    left:0;
+    width:100%;
+    padding:40px;
+    background:linear-gradient(to top,
+    rgba(0,0,0,0.95),
+    transparent);
+}
+
+.big-news-content h2{
+    font-size:40px;
+    margin-bottom:15px;
+}
+
+.big-news-content p{
+    color:#ddd;
+    line-height:1.7;
+}
+
+.side-news{
+    display:flex;
+    flex-direction:column;
+    gap:25px;
+}
+
+.side-card{
+    display:flex;
+    gap:15px;
+    background:#111;
+    border-radius:15px;
+    overflow:hidden;
+    transition:0.3s ease;
+}
+
+.side-card:hover{
+    transform:translateX(8px);
+}
+
+.side-card img{
+    width:130px;
+    object-fit:cover;
+}
+
+.side-content{
+    padding:15px;
+}
+
+.side-content h4{
+    margin-bottom:8px;
+}
+
+.side-content p{
+    color:#999;
+    font-size:14px;
 }
 
 /* ARTICLES */
-.articles {
-    padding: 60px 50px;
-    background: #0c0c0c;
-    color: white;
+.articles{
+    padding:90px 7%;
+    background:#0a0a0a;
 }
 
-.articles h2 {
-    text-align: center;
-    font-size: 32px;
-    margin-bottom: 40px;
+.article-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:30px;
 }
 
-.article-box {
-    background: #151515;
-    padding: 25px;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-}
-    /* FOOTER */
-footer {
-    background: #000;
-    color: #ccc;
-    padding: 40px 20px;
-    text-align: center;
-    border-top: 2px solid #ff1f1f;
+.article-card{
+    background:#111;
+    border-radius:18px;
+    overflow:hidden;
+    transition:0.4s ease;
 }
 
-.footer-links {
-    margin-bottom: 15px;
+.article-card:hover{
+    transform:translateY(-10px);
 }
 
-.footer-links a {
-    color: #ccc;
-    text-decoration: none;
-    margin: 0 15px;
-    font-size: 14px;
-    transition: color 0.3s ease;
+.article-card img{
+    width:100%;
+    height:230px;
+    object-fit:cover;
 }
 
-.footer-links a:hover {
-    color: #ff1f1f;
+.article-content{
+    padding:25px;
 }
 
-.footer-copy {
-    font-size: 13px;
-    color: #777;
-}
-    #loader {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: black;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
+.article-content h3{
+    margin-bottom:15px;
 }
 
-.spinner {
-  width: 90px;
-  height: 90px;
-  border: 6px solid #222;
-  border-top: 6px solid red;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
+.article-content p{
+    color:#aaa;
+    line-height:1.8;
 }
 
-#loader h2 {
-  color: red;
-  margin-top: 20px;
-  font-family: Arial;
-  letter-spacing: 3px;
+/* FOOTER */
+footer{
+    padding:60px 7%;
+    border-top:1px solid rgba(255,255,255,0.08);
+    text-align:center;
 }
 
-@keyframes spin {
-  100% {
-    transform: rotate(360deg);
-  }
+.footer-links{
+    margin-bottom:25px;
 }
-    </style>
 
+.footer-links a{
+    color:#999;
+    margin:0 15px;
+    text-decoration:none;
+    transition:0.3s ease;
+}
+
+.footer-links a:hover{
+    color:#ff1f1f;
+}
+
+.footer-copy{
+    color:#666;
+    font-size:14px;
+}
+
+/* LOADER */
+#loader{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:black;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+}
+
+.spinner{
+    width:90px;
+    height:90px;
+    border:6px solid #222;
+    border-top:6px solid red;
+    border-radius:50%;
+    animation:spin 1s linear infinite;
+}
+
+#loader h2{
+    color:red;
+    margin-top:20px;
+    letter-spacing:3px;
+}
+
+@keyframes spin{
+    100%{
+        transform:rotate(360deg);
+    }
+}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+
+header{
+    padding:18px 5%;
+    flex-direction:column;
+    gap:15px;
+}
+
+nav{
+    gap:18px;
+    flex-wrap:wrap;
+    justify-content:center;
+}
+
+.hero{
+    padding:0 5%;
+    height:85vh;
+}
+
+.hero h1{
+    font-size:46px;
+}
+
+.hero p{
+    font-size:16px;
+}
+
+.news-grid{
+    grid-template-columns:1fr;
+}
+
+.big-news{
+    min-height:350px;
+}
+
+.section-title{
+    font-size:34px;
+}
+
+}
+
+</style>
 </head>
 
 <body>
-    <div id="loader">
-  <div class="spinner"></div>
-          <h2>MoviePulse</h2>
+
+<div id="loader">
+    <div class="spinner"></div>
+    <h2>MoviePulse</h2>
 </div>
 
 <header>
-    <div class="logo" onclick="location.href='index.html'">
-      <span class="movie-name">MoviePulse</span>
-        <span class="slogan">Feel the Beat of Cinema</span>
-    </div>
 
-  
-    <nav>
-        <a href="index.html" class="active">Home</a>
-        <a href="poster.html">Movies</a>
-         <a href="articles.html">Articles</a>
-        <a href="about.html">About</a>
-        <a href="contact.html">contacts</a>
-    </nav>
+<div class="logo" onclick="location.href='index.html'">
+    <span class="movie-name">MoviePulse</span>
+    <span class="slogan">Feel the Beat of Cinema</span>
+</div>
+
+<nav>
+    <a href="index.html" class="active">Home</a>
+    <a href="poster.html">Movies</a>
+    <a href="trailer.html">Trailers</a>
+    <a href="articles.html">Articles</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+</nav>
+
 </header>
 
-<div class="hero">
-    <h1>Welcome to MoviePulse</h1><br><br>
-    <p>Your destination for movie reviews, trailers, posters and ratings — all in one place.</p>
-    <button class="posters-btn" onclick="location.href='poster.html'">let's Go
-    </button>
+<section class="hero">
+
+<div class="hero-content">
+
+<span class="featured-tag">FEATURED TODAY</span>
+
+<h1>Experience Cinema Beyond The Screen</h1>
+
+<p>
+Explore blockbuster trailers, trending movie news,
+cinematic reviews and the latest entertainment updates
+all inside MoviePulse.
+</p>
+
+<div class="hero-buttons">
+
+<button class="watch-btn"
+onclick="location.href='poster.html'">
+Explore Movies
+</button>
+
+<button class="info-btn"
+onclick="location.href='trailer.html'">
+Watch Trailers
+</button>
+
 </div>
 
-<div class="articles">
-    <h2>Featured Articles</h2>
-
-    <div class="article-box">
-        <h3>Why MoviePulse is Your Best Movie Companion</h3>
-        <p>We bring together authentic reviews, HD posters, trailers and news updates.</p>
-    </div>
-
-    <div class="article-box">
-        <h3>Top 10 Movies That Changed Cinema</h3>
-        <p>A deep dive into the films that shaped today’s movie world.</p>
-    </div>
 </div>
+
+</section>
+
+<section class="trending">
+
+<h2 class="section-title">Trending Movies</h2>
+
+<div class="movie-grid">
+
+<div class="movie-card">
+<img src="https://i.pinimg.com/736x/b9/9b/a1/b99ba13464b3b5415f1780d77b026d6f.jpg">
+<div class="movie-info">
+<h3>Deadpool & Wolverine</h3>
+<p>Marvel • Action • 2024</p>
+</div>
+</div>
+
+<div class="movie-card">
+<img src="https://i.pinimg.com/1200x/d2/db/29/d2db2917b4ff0959ae56fa74dbf9854d.jpg">
+<div class="movie-info">
+<h3>Godzilla x Kong</h3>
+<p>Sci‑Fi • Action • 2024</p>
+</div>
+</div>
+
+<div class="movie-card">
+<img src="https://i.pinimg.com/736x/e1/5f/c9/e15fc912b33a0c9aa2819130a20625b5.jpg">
+<div class="movie-info">
+<h3>Superman</h3>
+<p>DC Studios • 2026</p>
+</div>
+</div>
+
+<div class="movie-card">
+<img src="https://i.pinimg.com/736x/8c/34/53/8c3453960d34d7d083266cabd2123758.jpg">
+<div class="movie-info">
+<h3>Mission Impossible</h3>
+<p>Action • Thriller • 2025</p>
+</div>
+</div>
+
+</div>
+
+</section>
+
+<section class="news-section">
+
+<h2 class="section-title">Featured News</h2>
+
+<div class="news-grid">
+
+<div class="big-news">
+<img src="https://i.pinimg.com/1200x/f7/93/cf/f793cf13f485432251c4a2e6bfc5e4a3.jpg">
+
+<div class="big-news-content">
+<h2>Spider‑Man Returns With Multiverse Chaos</h2>
+<p>
+Fans are excited as Marvel reveals new footage and
+unexpected surprises for the next Spider‑Man adventure.
+</p>
+</div>
+
+</div>
+
+<div class="side-news">
+
+<div class="side-card">
+<img src="https://i.pinimg.com/736x/74/c7/17/74c717969a36f7d78c99f23702f46976.jpg">
+<div class="side-content">
+<h4>Sonic 3 Breaks Expectations</h4>
+<p>The blue speedster dominates the box office worldwide.</p>
+</div>
+</div>
+
+<div class="side-card">
+<img src="https://i.pinimg.com/736x/ab/3d/63/ab3d6358c7ee93923de8caec086aa259.jpg">
+<div class="side-content">
+<h4>The Batman Sequel Updates</h4>
+<p>New villains and darker Gotham teased by DC.</p>
+</div>
+</div>
+
+<div class="side-card">
+<img src="https://i.pinimg.com/736x/1c/a9/ce/1ca9ce3cb268540fb5ccb13c5ebe58df.jpg">
+<div class="side-content">
+<h4>Wakanda Forever Legacy</h4>
+<p>Marvel fans revisit one of the MCU’s emotional chapters.</p>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="articles">
+
+<h2 class="section-title">Latest Articles</h2>
+
+<div class="article-grid">
+
+<div class="article-card">
+<img src="https://i.pinimg.com/736x/5e/2a/3d/5e2a3debf547654a67b91c8e67074117.jpg">
+<div class="article-content">
+<h3>Why Shrek Still Dominates Animation</h3>
+<p>
+A look at how the Shrek franchise changed animated cinema forever.
+</p>
+</div>
+</div>
+
+<div class="article-card">
+<img src="https://i.pinimg.com/736x/8e/9e/96/8e9e9686668fb05b78d82e6fee2e7d6e.jpg">
+<div class="article-content">
+<h3>Kung Fu Panda’s Return</h3>
+<p>
+Po returns with new adventures and a stronger cinematic story.
+</p>
+</div>
+</div>
+
+<div class="article-card">
+<img src="https://i.pinimg.com/736x/a2/dc/61/a2dc613da24ff1b8bc47b25e7582d5b2.jpg">
+<div class="article-content">
+<h3>Venom’s Darkest Chapter</h3>
+<p>
+Inside the intense new storyline of Venom: The Last Dance.
+</p>
+</div>
+</div>
+
+</div>
+
+</section>
+
 <footer>
-    <div class="footer-links">
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="about.html">Privacy Policy</a>
-        <a href="contact.html">Contact</a>
-        <a href="about.html">Terms</a>
-    </div>
 
-    <div class="footer-copy">
-        © 2026 MoviePulse. All rights reserved.
-    </div>
+<div class="footer-links">
+<a href="index.html">Home</a>
+<a href="poster.html">Movies</a>
+<a href="articles.html">Articles</a>
+<a href="about.html">About</a>
+<a href="contact.html">Contact</a>
+</div>
+
+<div class="footer-copy">
+© 2026 MoviePulse. All rights reserved.
+</div>
+
 </footer>
-    <script>
-    window.addEventListener("load", function () {
-  setTimeout(() => {
+
+<script>
+
+window.addEventListener("load", function(){
+
+setTimeout(() => {
     document.getElementById("loader").style.display = "none";
-  }, 2500);
+}, 2000);
+
 });
-    </script>
+
+</script>
+
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+```
