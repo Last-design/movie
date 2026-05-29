@@ -10,6 +10,20 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
       <link rel="stylesheet" href="style.css">
 <style>
+     body{
+    margin:0;
+    color:#fff;
+    font-family:'Poppins',sans-serif;
+
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+
+    background:
+    radial-gradient(circle at top, rgba(255,0,0,0.08), transparent 40%),
+    radial-gradient(circle at bottom, rgba(255,0,0,0.05), transparent 50%),
+    #0b0b0b;
+}
  header{
     position:fixed;
     top:0;
@@ -71,6 +85,8 @@ nav a{
     font-size:15px;
     position:relative;
     transition:0.3s ease;
+    background:transparent;
+    padding:0;
 }
 
 nav a:hover,
