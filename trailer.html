@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>MoviePulse — Trailer</title>
+<title>MoviePulse — Article</title>
 
 <link rel="icon" type="image/png" href="moviepulse (2).png">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
@@ -26,7 +26,6 @@
 body{
   background:var(--bg);
   color:#fff;
-  min-height:100vh;
 }
 
 /* HEADER */
@@ -42,7 +41,6 @@ header{
   padding:16px 7%;
   background:rgba(0,0,0,0.85);
   backdrop-filter:blur(10px);
-  border-bottom:1px solid rgba(255,255,255,0.08);
 }
 
 .logo{
@@ -60,8 +58,6 @@ nav{
 nav a{
   color:#ddd;
   text-decoration:none;
-  position:relative;
-  transition:0.3s;
 }
 
 nav a:hover,
@@ -69,85 +65,81 @@ nav a.active{
   color:var(--accent);
 }
 
-nav a::after{
-  content:"";
-  position:absolute;
-  left:0;
-  bottom:-6px;
-  width:0;
-  height:2px;
-  background:var(--accent);
-  transition:0.3s;
-}
-
-nav a:hover::after,
-nav a.active::after{
-  width:100%;
-}
-
 /* MAIN */
 .container{
-  max-width:1000px;
+  max-width:900px;
   margin:120px auto 40px;
   padding:20px;
 }
 
+/* POSTER */
+.hero-poster{
+  width:100%;
+  height:420px;
+  object-fit:cover;
+  border-radius:12px;
+  margin-bottom:15px;
+}
+
+/* TITLE */
+.title{
+  font-size:32px;
+  margin-bottom:15px;
+}
+
+/* TRAILER */
 .video-frame{
   width:100%;
-  height:480px;
+  height:460px;
   border:none;
   border-radius:10px;
-  background:black;
+  margin-bottom:20px;
 }
 
-.title{
-  font-size:28px;
-  margin-bottom:12px;
-}
-
-.meta{
-  margin-top:15px;
-  color:var(--muted);
-  line-height:1.6;
+/* ARTICLE TEXT */
+.article-text{
+  line-height:1.9;
+  font-size:16px;
+  color:#ddd;
+  margin-bottom:25px;
 }
 
 /* RECOMMENDATIONS */
-#recommendations{
-  margin-top:40px;
-}
-
 #recGrid{
-  display:flex;
-  flex-wrap:wrap;
-  gap:15px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+  gap:12px;
+  margin-top:10px;
 }
 
 .card{
-  width:150px;
+  background:#111;
+  border-radius:10px;
+  overflow:hidden;
   cursor:pointer;
+  transition:0.3s;
+}
+
+.card:hover{
+  transform:scale(1.05);
 }
 
 .card img{
   width:100%;
-  height:220px;
+  height:240px;
   object-fit:cover;
-  border-radius:8px;
-  transition:0.3s;
-}
-
-.card img:hover{
-  transform:scale(1.05);
 }
 
 .card p{
+  padding:8px;
   font-size:13px;
   text-align:center;
-  margin-top:6px;
   color:#ddd;
 }
 
 /* RESPONSIVE */
 @media(max-width:900px){
+  .hero-poster{height:260px;}
   .video-frame{height:260px;}
 }
 </style>
@@ -161,55 +153,30 @@ nav a.active::after{
   <nav>
     <a href="index.html">Home</a>
     <a href="poster.html">Movies</a>
-    <a href="trailer.html" class="active">Trailer</a>
+    <a href="trailer.html" class="active">Article</a>
     <a href="about.html">About</a>
     <a href="contact.html">Contact</a>
   </nav>
 </header>
 
 <div class="container">
+
   <div id="mainArea"></div>
 
-  <section id="recommendations">
-    <h3 style="margin-bottom:15px;">Recommended Movies</h3>
-    <div id="recGrid"></div>
-  </section>
+  <h2 style="margin-top:40px;">Recommended Movies</h2>
+  <div id="recGrid"></div>
+
 </div>
 
 <script>
 const movies = [
-               {
-      id:39,
-       title: "CRIME 101 ",
-      poster:"https://i.pinimg.com/736x/b3/48/ef/b348ef761252b78c6b2dc007e286fca9.jpg",
-       trailer:"https://www.youtube.com/embed/f5y-cziwmMw",
-      date: 2026,
-      description:"a stylish crime thriller about a highly skilled jewel thief who plans a massive final heist along California’s Route 101. As he prepares for the robbery, a determined detective closes in on him while an insurance broker becomes caught between both worlds. The story mixes heists, crime, tension, and character drama in a modern noir style.",
-    },
-         {
-      id:38,
-       title: "HAIL MARY ",
-      poster:"https://i.pinimg.com/736x/d9/ee/0e/d9ee0e2e6875a9e9205f6dc47f34ff58.jpg",
-      trailer:"https://www.youtube.com/embed/m08TxIsFTRI",
-      date: 2026,
-      description:"a science-fiction adventure about a middle-school science teacher who wakes up alone on a spaceship with no memory of who he is or why he's there. As his memories return, he discovers he's on a mission to save Earth from an extinction-level threat. Along the way, he forms an unexpected friendship that becomes crucial to humanity's survival.",
-       
-    },
-  {
-      id: 37,
-       title: "OFF CAMPUS ",
-      poster:"https://i.pinimg.com/736x/93/1b/f5/931bf52a4b8d4c417c0914ab280a077d.jpg",
-      trailer:"https://www.youtube.com/embed/4Vin2GSA4V0",
-      date: 2026,
-      description:"a college romance drama based on the bestselling books by Elle Kennedy. It follows Hannah Wells, a music student, and Garrett Graham, the star hockey player at Briar University, who enter a fake dating arrangement that slowly turns into a real relationship. Alongside romance, the series explores friendship, college life, personal struggles, and the pressures of growing into adulthood", 
-    },
   {
     id: 1,
     title: "Avatar: The Way of Water",
     poster: "https://i.pinimg.com/736x/b2/f8/43/b2f843111df8347133dca44dc2c5f57b.jpg",
     trailer: "https://www.youtube.com/embed/d9MyW72ELq0",
     date: 2022,
-    description: "Jake Sully and Neytiri face new threats as they explore the oceans of Pandora."
+    description: "Jake Sully and Neytiri face new threats in Pandora's oceans as they fight to protect their family and home from returning human danger."
   },
   {
     id: 2,
@@ -217,17 +184,17 @@ const movies = [
     poster: "https://i.pinimg.com/1200x/f7/93/cf/f793cf13f485432251c4a2e6bfc5e4a3.jpg",
     trailer: "https://www.youtube.com/embed/JfVOs4VSpmA",
     date: 2021,
-    description: "Peter Parker’s identity is revealed, leading to multiverse chaos."
+    description: "Peter Parker's identity is revealed, causing chaos that opens the multiverse and brings enemies from different worlds into his life."
   },
   {
-    id: 3.5,
+    id: 3,
     title: "John Wick 4",
     poster: "https://i.pinimg.com/1200x/6e/50/a0/6e50a0bb3202e05cb9de75978b50e4a7.jpg",
     trailer: "https://www.youtube.com/embed/qEVUtrk8_B4",
     date: 2023,
-    description: "John Wick discovers a path to defeat The High Table."
+    description: "John Wick continues his fight against the High Table while traveling across the world to gain his freedom."
   },
-  {
+   {
   id: 36, title: "WAR MACHINE 2026 ", poster:"https://i.pinimg.com/736x/49/60/b6/4960b6a8ee37a04e01a45c97d7836134.jpg", trailer:"https://www.youtube.com/embed/AFuE1LRxm80", date : 2026, description:"a military sci-fi action movie where a group of elite Army Ranger recruits on a final training exercise encounter a deadly alien machine. What begins as a survival mission turns into a brutal fight against an unstoppable robotic threat hidden in the wilderness. The film stars Alan Ritchson as the mysterious soldier" },
 { id:35, title: "SPIDER-MAN brand new day ", poster:"https://i.pinimg.com/736x/c2/65/1f/c2651f93f4fec4dbfaa6488bd379365b.jpg", trailer:"https://www.youtube.com/embed/aBlsrtxuwss", description:"Four years later, Peter Parker lives completely alone after the world forgot his identity. With no friends, family, or Avengers support, he dedicates himself entirely to protecting New York City as Spider-Man. While fighting rising crime, Peter begins experiencing a mysterious physical evolution connected to his powers, threatening his very existence. At the same time, he investigates a series of strange crimes that lead him toward a powerful new threat."  },
 { id: 30, title: "Captain America: Brave New World", poster: "https://i.pinimg.com/736x/15/3e/aa/153eaa19c88070b8169f9b97f855b5f4.jpg", trailer: "https://www.youtube.com/embed/1pHDWnXmK7Y",description : "Sam Wilson, the new Captain America, as he becomes caught in a dangerous global conspiracy after meeting U.S. President Thaddeus Ross. As tensions rise and a hidden mastermind works behind the scenes, Sam must uncover the truth and stop a threat that could plunge the world into chaos." }, 
@@ -268,27 +235,35 @@ const movies = [
   { id: 18, title: "The Lion King (Remake)", poster: "https://i.pinimg.com/1200x/80/e0/8c/80e08cf494d3149c2ca02a5bfc8216ee.jpg", trailer: "https://www.youtube.com/embed/7TavVZMewpY", date: "2019",description : "Carol Danvers, Kamala Khan, and Monica Rambeau mysteriously swap places whenever they use their powers, forcing them to work together to stop a powerful new enemy threatening the universe." }
 ];
 
+
 const params = new URLSearchParams(location.search);
 const id = params.get("id") || movies[0].id;
 const current = movies.find(m => String(m.id) === String(id)) || movies[0];
 
+/* CLEAN ARTICLE (NO HEADERS) */
 function loadMain(movie){
   document.getElementById("mainArea").innerHTML = `
+    
+    <img class="hero-poster" src="${movie.poster}">
+   
+
     <h1 class="title">${movie.title}</h1>
+    <p>Avatar is a breathtaking cinematic experience set in the beautiful world of Pandora, where survival, family, and the connection between nature and humanity shape an emotional and unforgettable journey.</p>
 
-    <iframe class="video-frame"
-      src="${movie.trailer}"
-      allowfullscreen>
-    </iframe>
+    <iframe class="video-frame" src="${movie.trailer}" allowfullscreen></iframe>
 
-    <div class="meta">
-      <strong>Release:</strong> ${movie.date || "N/A"} <br><br>
-      <strong>Description:</strong><br>
-      ${movie.description || "No description available."}
+    <div class="article-text">
+      ${movie.description}
+
+      <br><br>
+
+      The movie delivers strong visuals, emotional moments, and intense action sequences that keep the viewer engaged from start to finish. 
+      ${movie.title} stands out for its cinematic style and storytelling approach, making it a memorable experience for fans.
     </div>
   `;
 }
 
+/* RECOMMENDATIONS */
 function renderRecommendations(){
   const grid = document.getElementById("recGrid");
 
