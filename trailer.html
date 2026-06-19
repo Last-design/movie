@@ -510,22 +510,16 @@ const current = movies.find(m => String(m.id) === String(id)) || movies[0];
 /* CLEAN ARTICLE (NO HEADERS) */
 function loadMain(movie){
   document.getElementById("mainArea").innerHTML = `
-    
     <img class="hero-poster" src="${movie.poster}">
-   
 
     <h1 class="title">${movie.title}</h1>
-    <p>Avatar is a breathtaking cinematic experience set in the beautiful world of Pandora, where survival, family, and the connection between nature and humanity shape an emotional and unforgettable journey.</p>
+
+    <p>${movie.summary}</p>
 
     <iframe class="video-frame" src="${movie.trailer}" allowfullscreen></iframe>
 
     <div class="article-text">
       ${movie.description}
-
-      <br><br>
-
-      The movie delivers strong visuals, emotional moments, and intense action sequences that keep the viewer engaged from start to finish. 
-      ${movie.title} stands out for its cinematic style and storytelling approach, making it a memorable experience for fans.
     </div>
   `;
 }
