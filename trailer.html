@@ -732,21 +732,50 @@ const current = movies.find(m => String(m.id) === String(id)) || movies[0];
 
 /* CLEAN ARTICLE (NO HEADERS) */
 function loadMain(movie){
-  document.getElementById("mainArea").innerHTML = `
-    <img class="hero-poster" src="${movie.poster}">
 
+  const recommendations = getRecommendations(movie.id);
+
+  document.getElementById("mainArea").innerHTML = `
     <h1 class="title">${movie.title}</h1>
 
-    <p>${movie.summary}</p>
+    <img class="hero-poster" src="${movie.poster}">
 
-    <iframe class="video-frame" src="${movie.trailer}" allowfullscreen></iframe>
+    <div class="movie-rating">
+      ⭐ ${movie.rating}/5
+    </div>
 
     <div class="article-text">
-      ${movie.description}
+      ${movie.article}
+    </div>
+
+    <h2>Official Trailer</h2>
+
+    <iframe
+      class="video-frame"
+      src="${movie.trailer}"
+      allowfullscreen>
+    </iframe>
+
+    <h2>Movie Summary</h2>
+    <p>${movie.summary}</p>
+
+    <div class="starring-section">
+      <h2>Starring</h2>
+      <p>${movie.starring.join(", ")}</p>
+    </div>
+
+    <h2>Recommended Movies</h2>
+
+    <div class="recommend-grid">
+      ${recommendations.map(rec => `
+        <div class="recommend-card" onclick="loadMain(movies.find(m => m.id === ${rec.id}))">
+          <img src="${rec.poster}">
+          <h4>${rec.title}</h4>
+        </div>
+      `).join("")}
     </div>
   `;
 }
-
 /* RECOMMENDATIONS */
 function renderRecommendations(){
   const grid = document.getElementById("recGrid");
