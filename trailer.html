@@ -161,6 +161,59 @@ nav a.active{
   .hero-poster{height:260px;}
   .video-frame{height:260px;}
 }
+  .starring-section{
+  margin:20px 0;
+  padding:15px;
+  border-radius:10px;
+  background:#1a1a1a;
+}
+
+.starring-section h2{
+  margin-bottom:10px;
+}
+
+.starring-section p{
+  line-height:1.6;
+}
+  /* ARTICLE STYLE (like blog / Wikipedia feel) */
+.article-text{
+  font-family: "Georgia", serif;
+  font-size: 18px;
+  line-height: 1.9;
+  color: #eaeaea;
+  letter-spacing: 0.2px;
+  margin: 20px 0;
+}
+
+/* Make paragraphs inside article better */
+.article-text p{
+  margin-bottom: 18px;
+}
+
+/* SUMMARY STYLE (modern / highlighted box) */
+.summary-box{
+  margin-top: 30px;
+  padding: 15px;
+  border-radius: 10px;
+  background: #111;
+  border-left: 4px solid #ffcc00;
+}
+
+/* SUMMARY TEXT (different font from article) */
+.summary-text{
+  font-family: "Arial", sans-serif;
+  font-size: 17px;
+  line-height: 1.6;
+  color: #ccc;
+  font-style: italic;
+}
+
+/* Optional heading style difference */
+.summary-box h2{
+  font-family: "Poppins", sans-serif;
+  font-size: 20px;
+  color: #fff;
+}
 </style>
 </head>
 
@@ -761,8 +814,10 @@ function loadMain(movie){
       allowfullscreen>
     </iframe>
 
-    <h2>Movie Summary</h2>
-    <p>${movie.summary}</p>
+    <div class="summary-box">
+  <h2>Movie Summary</h2>
+  <p class="summary-text">${movie.summary}</p>
+</div>
 
     <div class="starring-section">
       <h2>Starring</h2>
