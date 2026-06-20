@@ -725,12 +725,18 @@ By the end of the film, Peter Parker makes the ultimate sacrifice to protect the
 }
 
 ];
-
 const params = new URLSearchParams(location.search);
-const id = params.get("id") || movies[0].id;
-const current = movies.find(m => String(m.id) === String(id)) || movies[0];
+const id = params.get("id");
 
-/* CLEAN ARTICLE (NO HEADERS) */
+const current =
+  movies.find(m => String(m.id) === String(id)) || movies[0];
+
+/* RECOMMENDATIONS */
+function getRecommendations(currentId){
+  return movies.filter(m => String(m.id) !== String(currentId));
+}
+
+/* MAIN LOADER */
 function loadMain(movie){
 
   const recommendations = getRecommendations(movie.id);
@@ -750,8 +756,7 @@ function loadMain(movie){
 
     <h2>Official Trailer</h2>
 
-    <iframe
-      class="video-frame"
+    <iframe class="video-frame"
       src="${movie.trailer}"
       allowfullscreen>
     </iframe>
@@ -761,7 +766,7 @@ function loadMain(movie){
 
     <div class="starring-section">
       <h2>Starring</h2>
-      <p>${movie.starring.join(", ")}</p>
+      <p>${(movie.starring || []).join(", ")}</p>
     </div>
 
     <h2>Recommended Movies</h2>
@@ -776,31 +781,9 @@ function loadMain(movie){
     </div>
   `;
 }
-/* RECOMMENDATIONS */
-function renderRecommendations(){
-  const grid = document.getElementById("recGrid");
 
-  movies
-    .filter(m => String(m.id) !== String(current.id))
-    .forEach(m => {
-      const div = document.createElement("div");
-      div.className = "card";
-
-      div.innerHTML = `
-        <img src="${m.poster}">
-        <p>${m.title}</p>
-      `;
-
-      div.onclick = () => {
-        location.href = `trailer.html?id=${m.id}`;
-      };
-
-      grid.appendChild(div);
-    });
-}
-
+/* INIT PAGE */
 loadMain(current);
-renderRecommendations();
 </script>
 
 </body>
