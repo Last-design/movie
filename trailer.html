@@ -1427,17 +1427,19 @@ Runtime: Not officially confirmed<br>
 Sequel To: Based on Minecraft video game universe</i>`
 }
 ];
+/* ===================== URL ID ===================== */
 const params = new URLSearchParams(location.search);
-const id = params.get("id") || movies[0].id;
+const id = params.get("id");
 
-const current = movies.find(m => String(m.id) === String(id)) || movies[0];
+const current =
+  movies.find(m => String(m.id) === String(id)) || movies[0];
 
 /* ===================== RECOMMENDATIONS ===================== */
 function getRecommendations(currentId){
-  return movies.filter(m => String(m.id) !== String(currentId)).slice(0, 6);
+  return movies.filter(m => String(m.id) !== String(currentId));
 }
 
-/* ===================== MAIN LOADER ===================== */
+/* ===================== MAIN PAGE LOADER ===================== */
 function loadMain(movie){
 
   const recommendations = getRecommendations(movie.id);
@@ -1445,42 +1447,56 @@ function loadMain(movie){
   document.getElementById("mainArea").innerHTML = `
     <div class="movie-page">
 
+      <!-- TITLE -->
       <h1 class="title">${movie.title}</h1>
 
+      <!-- POSTER -->
       <img class="hero-poster" src="${movie.poster}" alt="${movie.title}">
 
+      <!-- RATING -->
       <div class="movie-rating">
         ⭐ ${movie.rating}/5
       </div>
 
+      <!-- ARTICLE -->
       <div class="article-text">
         ${movie.article || ""}
       </div>
 
-      <h2>Official Trailer</h2>
-
+      <!-- TRAILER -->
+      <h2 class="section-title">Official Trailer</h2>
       <iframe class="video-frame"
         src="${movie.trailer}"
         allowfullscreen>
       </iframe>
 
+      <!-- SUMMARY -->
       <div class="summary-box">
-        <h2>Movie Summary</h2>
-        <p class="summary-text">${movie.summary || ""}</p>
+        <h2 class="section-title">Movie Summary</h2>
+        <p>${movie.summary || ""}</p>
       </div>
 
+      <!-- STARRING -->
       <div class="starring-section">
-        <h2>Starring</h2>
-        <p>${(movie.starring || []).join(", ")}</p>
+        <h2 class="section-title">Starring</h2>
+        <p>
+          ${Array.isArray(movie.starring)
+            ? movie.starring.join(", ")
+            : movie.starring || "N/A"}
+        </p>
       </div>
 
-      <h2>Recommended Movies</h2>
+      <!-- RECOMMENDATION -->
+      <h2 class="section-title">Recommendation Movies</h2>
 
       <div class="recommend-grid">
         ${recommendations.map(rec => `
-          <div class="recommend-card" onclick="loadMain(movies.find(m => m.id === ${rec.id}))">
+          <div class="recommend-card"
+               onclick="loadMain(movies.find(m => m.id === ${rec.id}))">
+
             <img src="${rec.poster}" alt="${rec.title}">
             <h4>${rec.title}</h4>
+
           </div>
         `).join("")}
       </div>
