@@ -1475,21 +1475,29 @@ function loadMain(movie){
 
     <h2>Recommended Movies</h2>
 
-   function showRecommendations(recommendations) {
+ function showRecommendations(recommendations) {
   const main = document.getElementById("main");
 
   main.innerHTML = `
     <div class="recommend-grid">
       ${recommendations.map(rec => `
-        <div class="recommend-card" onclick="loadMain(movies.find(m => m.id === ${rec.id}))">
+        <div class="recommend-card" data-id="${rec.id}">
           <img src="${rec.poster}" alt="${rec.title}">
           <h4>${rec.title}</h4>
         </div>
       `).join("")}
     </div>
   `;
+
+  // add click events safely
+  document.querySelectorAll(".recommend-card").forEach(card => {
+    card.onclick = () => {
+      const movie = movies.find(m => m.id == card.dataset.id);
+      loadMain(movie);
+    };
+  });
 }
-loadMain(current);
+
 </script>
 
 </body>
