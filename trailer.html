@@ -1428,91 +1428,69 @@ Sequel To: Based on Minecraft video game universe</i>`
 }
 ];
 const params = new URLSearchParams(location.search);
-const id = params.get("id");
+const id = params.get("id") || movies[0].id;
 
-const current =
-  movies.find(m => String(m.id) === String(id)) || movies[0];
+const current = movies.find(m => String(m.id) === String(id)) || movies[0];
 
-/* RECOMMENDATIONS */
+/* ===================== RECOMMENDATIONS ===================== */
 function getRecommendations(currentId){
-  return movies.filter(m => String(m.id) !== String(currentId));
+  return movies.filter(m => String(m.id) !== String(currentId)).slice(0, 6);
 }
 
-/* MAIN LOADER */
+/* ===================== MAIN LOADER ===================== */
 function loadMain(movie){
 
   const recommendations = getRecommendations(movie.id);
 
   document.getElementById("mainArea").innerHTML = `
-    <h1 class="title">${movie.title}</h1>
+    <div class="movie-page">
 
-    <img class="hero-poster" src="${movie.poster}">
+      <h1 class="title">${movie.title}</h1>
 
-    <div class="movie-rating">
-      ⭐ ${movie.rating}/5
-    </div>
+      <img class="hero-poster" src="${movie.poster}" alt="${movie.title}">
 
-    <div class="article-text">
-      ${movie.article}
-    </div>
+      <div class="movie-rating">
+        ⭐ ${movie.rating}/5
+      </div>
 
-    <h2>Official Trailer</h2>
+      <div class="article-text">
+        ${movie.article || ""}
+      </div>
 
-    <iframe class="video-frame"
-      src="${movie.trailer}"
-      allowfullscreen>
-    </iframe>
+      <h2>Official Trailer</h2>
 
-    <div class="summary-box">
-  <h2>Movie Summary</h2>
-  <p class="summary-text">${movie.summary}</p>
-</div>
+      <iframe class="video-frame"
+        src="${movie.trailer}"
+        allowfullscreen>
+      </iframe>
 
-    <div class="starring-section">
-      <h2>Starring</h2>
-      <p>${(movie.starring || []).join(", ")}</p>
-    </div>
+      <div class="summary-box">
+        <h2>Movie Summary</h2>
+        <p class="summary-text">${movie.summary || ""}</p>
+      </div>
 
-    <h2>Recommended Movies</h2>
+      <div class="starring-section">
+        <h2>Starring</h2>
+        <p>${(movie.starring || []).join(", ")}</p>
+      </div>
 
-const movies = [ /* ALL YOUR MOVIES HERE */ ];
+      <h2>Recommended Movies</h2>
 
-/* FUNCTIONS FIRST */
-function loadMain(movie) {
-  const recommendations = getRecommendations(movie.id);
-  showRecommendations(recommendations);
-}
+      <div class="recommend-grid">
+        ${recommendations.map(rec => `
+          <div class="recommend-card" onclick="loadMain(movies.find(m => m.id === ${rec.id}))">
+            <img src="${rec.poster}" alt="${rec.title}">
+            <h4>${rec.title}</h4>
+          </div>
+        `).join("")}
+      </div>
 
-function showRecommendations(recommendations) {
-  const main = document.getElementById("main");
-
-  main.innerHTML = `
-    <div class="recommend-grid">
-      ${recommendations.map(rec => `
-        <div class="recommend-card">
-          <img src="${rec.poster}">
-          <h4>${rec.title}</h4>
-        </div>
-      `).join("")}
     </div>
   `;
 }
 
-/* SIMPLE RECOMMENDATION LOGIC */
-function getRecommendations(id) {
-  return movies.filter(m => m.id !== id).slice(0, 6);
-}
-
-/* URL HANDLING */
-const params = new URLSearchParams(location.search);
-const id = params.get("id") || movies[0].id;
-
-const current = movies.find(m => String(m.id) === String(id));
-
-/* FINAL CALL */
 loadMain(current);
 
 </script>
-
 </body>
 </html>
