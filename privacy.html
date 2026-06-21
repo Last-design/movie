@@ -38,15 +38,16 @@
       display: inline-block;
       margin-top: 20px;
       padding: 10px 15px;
-      background: gold;
+      background: red;
       color: black;
       text-decoration: none;
       border-radius: 5px;
       font-weight: bold;
+      font-size: 20px;
     }
 
     .back:hover {
-      background: #ffcc00;
+      background: white ;
     }
     .footer {
   background: #111;
@@ -97,6 +98,7 @@
 }
     /* NAVBAR CONTAINER */
 /* NAVBAR */
+/* NAVBAR */
 .navbar {
   position: fixed;
   top: 0;
@@ -108,12 +110,16 @@
   justify-content: space-between;
   align-items: center;
 
-  padding: 10px 25px;
+  padding: 18px 30px; /* increased height */
 
   background: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(12px);
 
+  border-bottom: 2px solid red; /* red bottom border */
+
   z-index: 1000;
+  border-bottom: 2px solid red;
+box-shadow: 0 2px 15px rgba(255, 0, 0, 0.4);
 }
 
 /* LOGO (RED) */
@@ -184,7 +190,7 @@
 
 /* FIX CONTENT SHIFT */
 body {
-  padding-top: 75px;
+  padding-top: 95px;
 }
   </style>
 </head>
