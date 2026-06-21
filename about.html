@@ -160,6 +160,117 @@
     transform: rotate(360deg);
   }
 }
+/* MAIN PAGE */
+.about-page{
+    max-width:1100px;
+    margin:auto;
+    padding:40px 20px;
+    color:white;
+    line-height:1.8;
+}
+
+/* HEADINGS */
+.about-page h1{
+    color:#ff0000;
+    text-align:center;
+    font-size:3rem;
+    margin-bottom:20px;
+}
+
+.about-page h2{
+    color:#ff0000;
+    margin-top:40px;
+    margin-bottom:15px;
+    border-left:4px solid #ff0000;
+    padding-left:12px;
+}
+
+.about-page h3{
+    color:white;
+}
+
+/* PARAGRAPHS */
+.about-page p{
+    color:#ddd;
+    font-size:1.05rem;
+}
+
+/* LISTS */
+.about-page ul{
+    padding-left:25px;
+}
+
+.about-page li{
+    color:white;
+    margin-bottom:10px;
+}
+
+/* RED BULLETS */
+.about-page li::marker{
+    color:#ff0000;
+}
+
+/* PROFILE CARDS */
+.member-card{
+    background:#111;
+    border:1px solid #222;
+    border-radius:15px;
+    padding:25px;
+    transition:.3s;
+}
+
+.member-card:hover{
+    border-color:#ff0000;
+    transform:translateY(-5px);
+}
+
+/* PROFILE IMAGE */
+.profile-img{
+    width:150px;
+    height:150px;
+    border-radius:50%;
+    object-fit:cover;
+    border:3px solid #ff0000;
+}
+
+/* ROLE */
+.role{
+    color:#ff0000;
+    font-weight:bold;
+}
+
+/* SOCIAL ICONS */
+.socials{
+    margin-top:15px;
+}
+
+.socials a{
+    color:white;
+    text-decoration:none;
+    margin:0 8px;
+    font-size:20px;
+    transition:.3s;
+}
+
+.socials a:hover{
+    color:#ff0000;
+}
+
+/* WEBSITE SOCIALS */
+.website-socials{
+    margin-top:15px;
+}
+
+.website-socials a{
+    color:white;
+    font-size:22px;
+    margin-right:15px;
+    transition:.3s;
+}
+
+.website-socials a:hover{
+    color:#ff0000;
+}
 </style>
 </head>
 
@@ -210,6 +321,109 @@ MoviePulse is designed to help users discover and explore movies in a simple and
 
 
 </div>
+        <section class="about-page">
+
+  <h1>About MoviePulse</h1>
+
+  <p>
+    MoviePulse is an entertainment platform dedicated to movie lovers around the world.
+    We provide movie reviews, detailed articles, summaries, trailers, recommendations,
+    and updates about upcoming releases. Our goal is to help viewers discover great
+    movies and enjoy cinema through informative and engaging content.
+  </p>
+
+  <h2>Our Mission</h2>
+
+  <p>
+    Our mission is to create a reliable and easy-to-use movie platform where visitors
+    can explore films, learn about upcoming releases, read detailed reviews, and find
+    recommendations based on their interests. We aim to make discovering movies simple,
+    enjoyable, and accessible to everyone.
+  </p>
+
+  <h2>What We Offer</h2>
+
+  <ul>
+    <li>Movie Reviews</li>
+    <li>Detailed Movie Articles</li>
+    <li>Movie Summaries</li>
+    <li>Official Trailers</li>
+    <li>Movie Recommendations</li>
+    <li>Upcoming Movie Updates</li>
+    <li>Entertainment Content</li>
+  </ul>
+
+  <h2>Meet The Team</h2>
+
+  <div class="team-container">
+
+    <div class="member-card">
+      <img src="patrick.jpg" alt="Shyaka Patrick" class="profile-img">
+      <h3>Shyaka Patrick</h3>
+      <p class="role">Founder & Lead Developer</p>
+
+      <p>
+        Patrick is the creator and lead developer of MoviePulse. With a background
+        in Software Development and a strong passion for technology and cinema,
+        he built MoviePulse to provide movie fans with high-quality reviews,
+        summaries, and entertainment content.
+      </p>
+
+      <div class="socials">
+        <a href="#">Facebook</a>
+        <a href="#">Instagram</a>
+        <a href="#">GitHub</a>
+      </div>
+    </div>
+
+    <div class="member-card">
+      <img src="faradji.jpg" alt="Faradji" class="profile-img">
+      <h3>Faradji</h3>
+      <p class="role">Co-Founder & Content Contributor</p>
+
+      <p>
+        Faradji works alongside the MoviePulse team by contributing ideas,
+        content development, and helping improve the overall experience for
+        movie enthusiasts. His passion for entertainment helps shape the
+        platform's vision and growth.
+      </p>
+
+      <div class="socials">
+        <a href="#">Facebook</a>
+        <a href="#">Instagram</a>
+      </div>
+    </div>
+
+  </div>
+
+  <h2>Why Trust MoviePulse?</h2>
+
+  <p>
+    We are committed to publishing original, informative, and reader-friendly
+    content. Every article is carefully prepared to provide useful information,
+    honest opinions, and engaging insights about movies and entertainment.
+  </p>
+
+  <h2>Follow MoviePulse</h2>
+
+  <div class="website-socials">
+    <a href="#">Facebook</a>
+    <a href="#">Instagram</a>
+    <a href="#">X (Twitter)</a>
+    <a href="#">YouTube</a>
+  </div>
+
+  <h2>Contact Us</h2>
+
+  <p>
+    Email: moviepulse247@gmail.com
+  </p>
+
+  <p>
+    We welcome feedback, suggestions, and collaboration opportunities.
+  </p>
+
+</section>
 
 <footer>
  © 2026 MoviePulse | All Rights Reserved | Privacy Policy | Terms | Disclaimer
