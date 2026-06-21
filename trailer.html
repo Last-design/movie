@@ -1475,28 +1475,42 @@ function loadMain(movie){
 
     <h2>Recommended Movies</h2>
 
- function showRecommendations(recommendations) {
+const movies = [ /* ALL YOUR MOVIES HERE */ ];
+
+/* FUNCTIONS FIRST */
+function loadMain(movie) {
+  const recommendations = getRecommendations(movie.id);
+  showRecommendations(recommendations);
+}
+
+function showRecommendations(recommendations) {
   const main = document.getElementById("main");
 
   main.innerHTML = `
     <div class="recommend-grid">
       ${recommendations.map(rec => `
-        <div class="recommend-card" data-id="${rec.id}">
-          <img src="${rec.poster}" alt="${rec.title}">
+        <div class="recommend-card">
+          <img src="${rec.poster}">
           <h4>${rec.title}</h4>
         </div>
       `).join("")}
     </div>
   `;
-
-  // add click events safely
-  document.querySelectorAll(".recommend-card").forEach(card => {
-    card.onclick = () => {
-      const movie = movies.find(m => m.id == card.dataset.id);
-      loadMain(movie);
-    };
-  });
 }
+
+/* SIMPLE RECOMMENDATION LOGIC */
+function getRecommendations(id) {
+  return movies.filter(m => m.id !== id).slice(0, 6);
+}
+
+/* URL HANDLING */
+const params = new URLSearchParams(location.search);
+const id = params.get("id") || movies[0].id;
+
+const current = movies.find(m => String(m.id) === String(id));
+
+/* FINAL CALL */
+loadMain(current);
 
 </script>
 
