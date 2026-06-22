@@ -199,6 +199,7 @@ footer {
   <div class="search-wrap">
     <input id="searchInput" placeholder="Search movies..." />
   </div>
+      <div id="postersRow"></div>
 
   
   <nav class="links">
@@ -220,7 +221,7 @@ footer {
 
 <script>
   // MOVIES ARRAY (now embedded here, no movie.js needed)
-  const movies = [
+let movies = [
         {
          id:43,
        title: "BERLIN season 2 ",
@@ -579,6 +580,17 @@ rating:4
     rating: 4.4
   }
 ];
+      function createSlug(title) {
+  return title
+    .toLowerCase()
+    .replace(/[^a-z0-9\s]/g, "")
+    .trim()
+    .replace(/\s+/g, "-");
+}
+movies = movies.map(movie => ({
+  ...movie,
+  slug: movie.slug || createSlug(movie.title)
+}));
 
   const postersRow = document.getElementById('postersRow');
   const searchInput = document.getElementById('searchInput');
