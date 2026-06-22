@@ -221,7 +221,7 @@ footer {
 
 <script>
   // MOVIES ARRAY (now embedded here, no movie.js needed)
-let movies = [
+const movies = [
         {
          id:43,
        title: "BERLIN season 2 ",
@@ -616,7 +616,6 @@ movies = movies.map(movie => ({
     });
   }
 
-  function escapeHtml(s){ return s ? s.replace(/&/g,'&amp;').replace(/</g,'&lt;') : s; }
 
   // initial render
   renderPosters(movies);
@@ -643,7 +642,6 @@ movies = movies.map(movie => ({
     }
   });
 </script>
-<script src="script.js"></script>
 </body>
 </html>
 
