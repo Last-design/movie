@@ -579,17 +579,7 @@ rating:4
     rating: 4.4
   }
 ];
-      function createSlug(title) {
-  return title
-    .toLowerCase()
-    .replace(/[^a-z0-9\s]/g, "")
-    .trim()
-    .replace(/\s+/g, "-");
-}
-movies = movies.map(movie => ({
-  ...movie,
-  slug: movie.slug || createSlug(movie.title)
-}));
+
 
   const postersRow = document.getElementById('postersRow');
   const searchInput = document.getElementById('searchInput');
