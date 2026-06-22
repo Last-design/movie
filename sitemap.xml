@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Home page -->
+  <url>
+    <loc>https://moviepulse247.netlify.app//</loc>
+  </url>
+
+  <!-- Posters page -->
+  <url>
+    <loc>https://moviepulse247.netlify.app/poster.html</loc>
+  </url>
+
+  <!-- Trailer page -->
+  <url>
+    <loc>https://moviepulse247.netlify.app/trailer.html</loc>
+  </url>
+
+  <!-- Review page -->
+  <url>
+    <loc>https://moviepulse247.netlify.app/about.html</loc>
+  </url>
+  
+    <url>
+    <loc>https://moviepulse247.netlify.app/privacy.html</loc>
+  </url>
+
+    <url>
+    <loc>https://moviepulse247.netlify.app/contact.html</loc>
+  </url>
+
+</urlset>
