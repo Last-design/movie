@@ -7,9 +7,10 @@
 <title>MoviePulse – Home</title>
 <link rel="icon" type="image/png" href="moviepulse (2).png">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-<meta name="google-site-verification" content="uoLfWDj79FYAPf9xE7nm9jioMH8fGya6iMsKOwbRhdo" />
+  <meta name="google-site-verification" content="uoLfWDj79FYAPf9xE7nm9jioMH8fGya6iMsKOwbRhdo" />
 
 <style>
+
 *{
     margin:0;
     padding:0;
@@ -42,7 +43,9 @@ header{
     border-bottom:1px solid rgba(255,255,255,0.08);
 }
 
-.logo{cursor:pointer;}
+.logo{
+    cursor:pointer;
+}
 
 .movie-name{
     display:block;
@@ -65,6 +68,8 @@ nav a{
     color:#ddd;
     text-decoration:none;
     font-size:15px;
+    position:relative;
+    transition:0.3s ease;
 }
 
 nav a:hover,
@@ -72,26 +77,56 @@ nav a.active{
     color:#ff1f1f;
 }
 
+nav a::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:-8px;
+    width:0;
+    height:2px;
+    background:#ff1f1f;
+    transition:0.3s ease;
+}
+
+nav a:hover::after,
+nav a.active::after{
+    width:100%;
+}
+
 /* HERO */
 .hero{
     height:100vh;
     background:
-    linear-gradient(to top, rgba(0,0,0,0.95), rgba(0,0,0,0.45)),
+    linear-gradient(to top,
+    rgba(0,0,0,0.95),
+    rgba(0,0,0,0.45)),
     url('mali.jpg');
+
     background-size:cover;
     background-position:center;
     display:flex;
     align-items:center;
     padding:0 7%;
-    transition: background 1s ease-in-out;
 }
 
 .hero-content{
     max-width:700px;
 }
 
+.featured-tag{
+    display:inline-block;
+    background:#ff1f1f;
+    padding:10px 18px;
+    border-radius:40px;
+    font-size:13px;
+    font-weight:600;
+    letter-spacing:1px;
+    margin-bottom:25px;
+}
+
 .hero h1{
     font-size:78px;
+    line-height:1.1;
     margin-bottom:25px;
 }
 
@@ -99,17 +134,40 @@ nav a.active{
     color:#ddd;
     line-height:1.9;
     font-size:18px;
-    margin-bottom:20px;
+    margin-bottom:35px;
 }
 
-.watch-btn{
+.hero-buttons{
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.watch-btn,
+.info-btn{
     padding:15px 32px;
     border:none;
     border-radius:8px;
+    cursor:pointer;
+    font-size:16px;
+    font-weight:600;
+    transition:0.3s ease;
+}
+
+.watch-btn{
     background:#ff1f1f;
     color:white;
-    font-size:16px;
-    cursor:pointer;
+}
+
+.info-btn{
+    background:rgba(255,255,255,0.1);
+    border:1px solid rgba(255,255,255,0.15);
+    color:white;
+}
+
+.watch-btn:hover,
+.info-btn:hover{
+    transform:translateY(-5px);
 }
 
 /* TRENDING */
@@ -132,9 +190,35 @@ nav a.active{
     background:#111;
     border-radius:18px;
     overflow:hidden;
+    transition:0.4s ease;
+    cursor:pointer;
 }
 
-/* NEWS */
+.movie-card img{
+    width:100%;
+    height:340px;
+    object-fit:cover;
+}
+
+.movie-info{
+    padding:18px;
+}
+
+.movie-info h3{
+    margin-bottom:10px;
+}
+
+.movie-info p{
+    color:#aaa;
+    font-size:14px;
+}
+
+.movie-card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 20px 45px rgba(255,31,31,0.25);
+}
+
+/* FEATURED NEWS */
 .news-section{
     padding:20px 7% 90px;
 }
@@ -143,6 +227,77 @@ nav a.active{
     display:grid;
     grid-template-columns:2fr 1fr;
     gap:30px;
+}
+
+.big-news{
+    position:relative;
+    border-radius:20px;
+    overflow:hidden;
+    min-height:500px;
+}
+
+.big-news img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.big-news-content{
+    position:absolute;
+    bottom:0;
+    left:0;
+    width:100%;
+    padding:40px;
+    background:linear-gradient(to top,
+    rgba(0,0,0,0.95),
+    transparent);
+}
+
+.big-news-content h2{
+    font-size:40px;
+    margin-bottom:15px;
+}
+
+.big-news-content p{
+    color:#ddd;
+    line-height:1.7;
+}
+
+.side-news{
+    display:flex;
+    flex-direction:column;
+    gap:25px;
+}
+
+.side-card{
+    display:flex;
+    gap:15px;
+    background:#111;
+    border-radius:15px;
+    overflow:hidden;
+    transition:0.3s ease;
+}
+
+.side-card:hover{
+    transform:translateX(8px);
+}
+
+.side-card img{
+    width:130px;
+    object-fit:cover;
+}
+
+.side-content{
+    padding:15px;
+}
+
+.side-content h4{
+    margin-bottom:8px;
+}
+
+.side-content p{
+    color:#999;
+    font-size:14px;
 }
 
 /* ARTICLES */
@@ -157,145 +312,424 @@ nav a.active{
     gap:30px;
 }
 
+.article-card{
+    background:#111;
+    border-radius:18px;
+    overflow:hidden;
+    transition:0.4s ease;
+}
+
+.article-card:hover{
+    transform:translateY(-10px);
+}
+
+.article-card img{
+    width:100%;
+    height:230px;
+    object-fit:cover;
+}
+
+.article-content{
+    padding:25px;
+}
+
+.article-content h3{
+    margin-bottom:15px;
+}
+
+.article-content p{
+    color:#aaa;
+    line-height:1.8;
+}
+
 /* FOOTER */
 footer{
     padding:60px 7%;
+    border-top:1px solid rgba(255,255,255,0.08);
     text-align:center;
 }
+
+.footer-links{
+    margin-bottom:25px;
+}
+
+.footer-links a{
+    color:#999;
+    margin:0 15px;
+    text-decoration:none;
+    transition:0.3s ease;
+}
+
+.footer-links a:hover{
+    color:#ff1f1f;
+}
+
+.footer-copy{
+    color:#666;
+    font-size:14px;
+}
+
+/* LOADER */
+#loader{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:black;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+}
+
+.spinner{
+    width:90px;
+    height:90px;
+    border:6px solid #222;
+    border-top:6px solid red;
+    border-radius:50%;
+    animation:spin 1s linear infinite;
+}
+
+#loader h2{
+    color:red;
+    margin-top:20px;
+    letter-spacing:3px;
+}
+    .latest{
+    font-size:50px;
+    padding:40px;
+     font-family:'Poppins',sans-serif;
+    }
+
+@keyframes spin{
+    100%{
+        transform:rotate(360deg);
+    }
+}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+
+header{
+    padding:18px 5%;
+    flex-direction:column;
+    gap:15px;
+}
+
+nav{
+    gap:18px;
+    flex-wrap:wrap;
+    justify-content:center;
+}
+
+.hero{
+    padding:0 5%;
+    height:85vh;
+}
+
+.hero h1{
+    font-size:46px;
+}
+
+.hero p{
+    font-size:16px;
+}
+
+.news-grid{
+    grid-template-columns:1fr;
+}
+
+.big-news{
+    min-height:350px;
+}
+
+.section-title{
+    font-size:34px;
+}
+
+}
+
 </style>
 </head>
 
 <body>
 
-<!-- LOADER -->
 <div id="loader">
     <div class="spinner"></div>
     <h2>MoviePulse</h2>
 </div>
 
-<!-- HEADER -->
 <header>
-<div class="logo">
+
+<div class="logo" onclick="location.href='index.html'">
     <span class="movie-name">MoviePulse</span>
     <span class="slogan">Feel the Beat of Cinema</span>
 </div>
 
 <nav>
-    <a class='active' href='/'>Home</a>
-    <a href='/poster'>Movies</a>
-    <a href='/about'>About</a>
-    <a href='/privacy'>Privacy Policy</a>
-    <a href='/contact'>Contact</a>
+    <a href="index.html" class="active">Home</a>
+    <a href="poster.html">Movies</a>
+    <a href="about.html">About</a>
+     <a href="privacy.html">privacy policy</a>
+    <a href="contact.html">Contact</a>
 </nav>
+
 </header>
 
-<!-- HERO -->
 <section class="hero">
-  <div class="hero-content" id="heroContent">
 
-    <h1>Experience Cinema Beyond The Screen</h1>
+<div class="hero-content">
 
+<h1>Experience Cinema Beyond The Screen</h1>
+
+<p>
+MoviePulse is an entertainment website covering movie news, reviews, trailers, cast updates, release dates, and TV series information from around the world.
+</p>
     <p>
-      MoviePulse is an entertainment website covering movie news, reviews, trailers, cast updates, release dates, and TV series information from around the world.
-    </p>
+    Our platform is updated regularly with new releases, popular films,
+    and detailed movie information to help users stay up to date with
+    the latest in the film industry.
+  </p>
 
-    <p>
-      Our platform is updated regularly with new releases, popular films and detailed movie information.
-    </p>
+<div class="hero-buttons">
 
-    <div class="hero-buttons">
-      <button class="watch-btn" onclick="location.href='poster.html'">
-        Explore Movies
-      </button>
-    </div>
+<button class="watch-btn"
+onclick="location.href='poster.html'">
+Explore Movies
+</button>
 
-  </div>
+</div>
+
+</div>
+
 </section>
 
-<!-- TRENDING -->
 <section class="trending">
+
 <h2 class="section-title">Trending Movies</h2>
 
 <div class="movie-grid">
-    <!-- YOUR MOVIES STAY SAME -->
+    
+    <div class="movie-card">
+          <a href="trailer.html?id=42" class="movie-link">
+<img src="https://i.pinimg.com/736x/e4/d8/3a/e4d83a71e38fd2494ea3e96495ae9dc2.jpg">
+          </a>
+<div class="movie-info">
+<h3>SPIDER NOIR</h3>
+<p>a dark superhero crime series set in 1930s New York. 2026</p>
 </div>
+</div>
+
+<div class="movie-card">
+      <a href="trailer.html?id=38" class="movie-link">
+<img src="https://i.pinimg.com/736x/d9/ee/0e/d9ee0e2e6875a9e9205f6dc47f34ff58.jpg">
+      </a>
+<div class="movie-info">
+<h3>HAIL MARY</h3>
+<p>SCI-FI • adventure • 2026</p>
+</div>
+</div>
+
+<div class="movie-card">
+      <a href="trailer.html?id=39" class="movie-link">
+<img src="https://i.pinimg.com/736x/b3/48/ef/b348ef761252b78c6b2dc007e286fca9.jpg">
+      </a>
+<div class="movie-info">
+<h3>CRIME 101</h3>
+<p>CRIME • Action • 2026</p>
+</div>
+</div>
+ 
+<div class="movie-card">
+    <a href="trailer.html?id=41" class="movie-link">
+<img src="https://i.pinimg.com/736x/cd/ed/6b/cded6b72af5a9612228c2ef4a060539d.jpg">
+</a>
+<div class="movie-info">
+<h3>The PUNISHER one last kill</h3>
+<p>MARVEL • 2026</p>
+</div>
+</div>
+
+    
+
+<div class="movie-card">
+     <a href="trailer.html?id=40" class="movie-link">
+<img src="https://i.pinimg.com/736x/8e/ba/82/8eba824f089754d25e9f22f0f5494adc.jpg">
+     </a>
+<div class="movie-info">
+<h3>APEX</h3>
+<p> • ACTION • 2026</p>
+</div>
+</div>
+
+<div class="movie-card">
+     <a href="trailer.html?id=43" class="movie-link">
+<img src="https://i.pinimg.com/736x/57/ce/d3/57ced3b4f4db625a33879ba6afcf6b23.jpg"></a>
+<div class="movie-info">
+<h3>BERLIN season 2</h3>
+<p>Berlin and the Lady with an Ermine. 2026</p>
+</div>
+</div>
+    <div class="movie-card">
+         <a href="trailer.html?id=37" class="movie-link">
+<img src="https://i.pinimg.com/1200x/3f/eb/db/3febdb41c01a70c72579ff18faf30dd6.jpg">
+         </a>
+<div class="movie-info">
+<h4>OFF CAMPUS</h4>
+<p>a college romance drama based on the bestselling books by Elle Kennedy</p>
+</div>
+</div>
+</div>
+
 </section>
 
-<!-- NEWS -->
 <section class="news-section">
+
 <h2 class="section-title">Featured News</h2>
+
 <div class="news-grid">
-    <!-- YOUR NEWS STAYS SAME -->
+
+<div class="big-news">
+<img src="https://i.pinimg.com/736x/62/17/7c/62177c818a5ca03a5af2f6979effd202.jpg">
+
+<div class="big-news-content">
+<h2>Spider‑Man noir</h2>
+<p>
+a dark superhero crime series set in 1930s New York.
+    The show blends noir detective storytelling with the Spider-Man mythos, featuring crime, corruption, and mystery.
+</p>
 </div>
+
+</div>
+
+<div class="side-news">
+    <h1 class= "latest">Latest</h1>
+
+<div class="side-card">
+<img src="https://i.pinimg.com/1200x/47/1e/ab/471eabf76c318e2aceabeae8ecdf9677.jpg">
+<div class="side-content">
+<h4>Greenland Migration 2</h4>
+<p>After the success of Migration (2023), fans are eagerly waiting for news about Migration 2. The first movie followed the adventures of the Mallard family as they left their peaceful pond and embarked on a thrilling journey filled with unexpected challenges, new friendships, and exciting discoveries.</p>
+</div>
+</div>
+
+<div class="side-card">
+<img src="https://i.pinimg.com/1200x/3f/eb/db/3febdb41c01a70c72579ff18faf30dd6.jpg">
+<div class="side-content">
+<h4>off campus</h4>
+<p>Off Campus is a romantic drama series based on the bestselling book series by Elle Kennedy. Set at Briar University, the story follows a group of college students as they navigate love, friendship, academic pressure, and the challenges of growing into adulthood.</p>
+</div>
+</div>
+
+<div class="side-card">
+<img src="https://i.pinimg.com/736x/78/6c/b8/786cb8b688270e0f2fff80da566c064b.jpg">
+<div class="side-content">
+<h4>Ready or Not</h4>
+<p>Following the shocking events of the first film, Ready or Not 2: Here I Come brings back the intense blend of horror, suspense, and dark comedy that made the original a fan favorite. The story continues after Grace survived a deadly game of hide-and-seek that turned into a fight for survival against a wealthy and mysterious family bound by a terrifying tradition. </p>
+</div>
+</div>
+    <div class="side-card">
+<img src="https://i.pinimg.com/736x/b2/f8/43/b2f843111df8347133dca44dc2c5f57b.jpg">
+<div class="side-content">
+<h4>Avatar the way of water</h4>
+<p>Avatar: The Way of Water returns audiences to the breathtaking world of Pandora, continuing the story of Jake Sully and Neytiri more than a decade after the events of the first film. Now parents, they have built a family and are determined to protect their children from new dangers that threaten their peaceful life.</p>
+</div>
+</div>
+
+   <div class="side-card">
+<img src="https://i.pinimg.com/736x/54/bd/28/54bd28dd5fe3af5a7d6332170ce8f2b0.jpg">
+<div class="side-content">
+<h4>the bluff</h4>
+<p>The Bluff is an action-adventure film set in the 19th century that follows a determined woman fighting to protect her family and secure her future in a dangerous and unforgiving world. Living on a remote island, she is forced to confront threats from her past when a group of ruthless enemies arrives, putting everything she loves at risk.</p>
+</div>
+</div>
+    
+
+
+</div>
+
+</div>
+
 </section>
 
-<!-- ARTICLES -->
+
 <section class="articles">
-<h2 class="section-title">🔥 Latest Updates</h2>
-<p style="color:#aaa; max-width:700px;">
-Stay updated with new movies, trailers, and entertainment news from around the world.
-</p>
+
+<h2 class="section-title">Latest updates</h2>
+      <p>
+    Check out the newest movies added to our collection. We continuously<br>
+    update our database with trending films and upcoming releases.
+  </p><br><br>
+
 
 <div class="article-grid">
-    <!-- YOUR ARTICLES STAY SAME -->
+
+<div class="article-card">
+<img src="https://i.pinimg.com/736x/5e/2a/3d/5e2a3debf547654a67b91c8e67074117.jpg">
+<div class="article-content">
+<h3>Why Shrek Still Dominates Animation</h3>
+<p>
+Before Shrek, many animated films followed traditional fairy-tale formulas. Shrek flipped those stories upside down by making the ogre the hero and mocking classic fairy-tale clichés.
+</p>
 </div>
+</div>
+
+<div class="article-card">
+<img src="https://i.pinimg.com/736x/8e/9e/96/8e9e9686668fb05b78d82e6fee2e7d6e.jpg">
+<div class="article-content">
+<h3>Kung Fu Panda’s Return</h3>
+<p>
+Kung Fu Panda is a popular animated martial arts film series centered on an unlikely hero named Po, a clumsy but kind-hearted panda who dreams of becoming a kung fu master. His life changes when he is unexpectedly chosen as the legendary Dragon Warrior, destined to protect the Valley of Peace.
+</p>
+</div>
+</div>
+
+<div class="article-card">
+<img src="https://i.pinimg.com/736x/a2/dc/61/a2dc613da24ff1b8bc47b25e7582d5b2.jpg">
+<div class="article-content">
+<h3>Venom’s Darkest Chapter</h3>
+<p>
+Eddie Brock was once a respected journalist in San Francisco, known for chasing truth and exposing powerful people who tried to hide their crimes. But everything in his life collapsed when one investigation went wrong. He lost his job, his reputation, and the life he had built. Alone and struggling, Eddie felt like the world had turned its back on him.
+</p>
+</div>
+</div>
+
+</div>
+
 </section>
 
-<!-- FOOTER -->
 <footer>
+
+<div class="footer-links">
+<a href="index.html">Home</a>
+<a href="poster.html">Movies</a>
+<a href="contact.html">Contact</a>
+<a href="about.html">About</a>
+<a href="contact.html">Privacy Policy</a>
+    
+</div>
+
 <div class="footer-copy">
 © 2026 MoviePulse. All rights reserved.
 </div>
+
 </footer>
 
-<!-- SCRIPTS -->
 <script>
+
 window.addEventListener("load", function(){
-    setTimeout(() => {
-        document.getElementById("loader").style.display = "none";
-    }, 2000);
+
+setTimeout(() => {
+    document.getElementById("loader").style.display = "none";
+}, 2000);
+
 });
 
-/* HERO SLIDER */
-const featuredHero = [
-  {
-    title: "Spider Noir",
-    text: "A dark 1930s superhero crime story in New York.",
-    bg: "https://i.pinimg.com/736x/e4/d8/3a/e4d83a71e38fd2494ea3e96495ae9dc2.jpg"
-  },
-  {
-    title: "Hail Mary",
-    text: "A sci-fi survival journey beyond Earth.",
-    bg: "https://i.pinimg.com/736x/d9/ee/0e/d9ee0e2e6875a9e9205f6dc47f34ff58.jpg"
-  },
-  {
-    title: "Crime 101",
-    text: "A gripping crime thriller coming in 2026.",
-    bg: "https://i.pinimg.com/736x/b3/48/ef/b348ef761252b78c6b2dc007e286fca9.jpg"
-  }
-];
-
-let i = 0;
-
-function changeHero() {
-  const hero = document.querySelector(".hero");
-  const content = document.getElementById("heroContent");
-
-  hero.style.background =
-    `linear-gradient(to top, rgba(0,0,0,0.95), rgba(0,0,0,0.45)), url('${featuredHero[i].bg}')`;
-
-  hero.style.backgroundSize = "cover";
-  hero.style.backgroundPosition = "center";
-
-  content.querySelector("h1").innerText = featuredHero[i].title;
-  content.querySelectorAll("p")[0].innerText = featuredHero[i].text;
-
-  i = (i + 1) % featuredHero.length;
-}
-
-setInterval(changeHero, 5000);
-changeHero();
 </script>
 
 </body>
 </html>
+
