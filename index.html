@@ -301,47 +301,107 @@ nav a.active::after{
 }
 
 /* ARTICLES */
-.articles{
-    padding:90px 7%;
-    background:#0a0a0a;
+
+/* SECTION TITLE WITH RED BAR */
+.section-title{
+    font-size:40px;
+    margin-bottom:10px;
+    position:relative;
+    padding-left:15px;
 }
 
-.article-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-    gap:30px;
+.section-title::before{
+    content:"";
+    position:absolute;
+    left:0;
+    top:5px;
+    width:5px;
+    height:80%;
+    background:red;
+    border-radius:10px;
 }
 
-.article-card{
-    background:#111;
-    border-radius:18px;
+/* DESCRIPTION */
+.section-desc{
+    color:#aaa;
+    margin-bottom:30px;
+    max-width:700px;
+}
+
+/* SLIDER WRAPPER */
+.slider-wrapper{
     overflow:hidden;
-    transition:0.4s ease;
+}
+
+/* TRACK (LEFT SLIDE EFFECT) */
+.slider-track{
+    display:flex;
+    gap:20px;
+    animation:slideLeft 20s linear infinite;
+}
+
+/* CARD */
+.article-card{
+    min-width:280px;
+    background:#111;
+    border-radius:15px;
+    overflow:hidden;
+    position:relative;
+    transition:0.3s;
 }
 
 .article-card:hover{
-    transform:translateY(-10px);
+    transform:translateY(-8px);
+    box-shadow:0 15px 40px rgba(255,0,0,0.3);
 }
 
+/* IMAGE */
 .article-card img{
     width:100%;
-    height:230px;
+    height:250px;
     object-fit:cover;
 }
 
+/* CONTENT */
 .article-content{
-    padding:25px;
+    padding:15px;
 }
 
 .article-content h3{
-    margin-bottom:15px;
+    margin-bottom:8px;
 }
 
 .article-content p{
     color:#aaa;
-    line-height:1.8;
+    font-size:14px;
 }
 
+/* META (RATING + YEAR) */
+.meta{
+    display:flex;
+    justify-content:space-between;
+    margin-top:10px;
+    font-size:13px;
+    color:#fff;
+}
+
+/* BADGE */
+.badge{
+    position:absolute;
+    top:10px;
+    left:10px;
+    background:red;
+    padding:5px 10px;
+    font-size:11px;
+    border-radius:20px;
+}
+
+/* SLIDE ANIMATION */
+/*@keyframes slideLeft{
+    0%{transform:translateX(0);}
+    100%{transform:translateX(-50%);}
+}
+    */
 /* FOOTER */
 footer{
     padding:60px 7%;
@@ -451,7 +511,147 @@ nav{
 }
 
 }
+.hero{
+    height:100vh;
+    position:relative;
+    overflow:hidden;
+    display:flex;
+    align-items:center;
+    padding:0 7%;
+}
 
+/* SLIDES */
+.hero-slide{
+    position:absolute;
+    inset:0;
+    background-size:cover;
+    background-position:center;
+    opacity:0;
+    transition:0.9s ease;
+}
+
+.hero-slide.active{
+    opacity:1;
+}
+
+/* DARK OVERLAY */
+.hero-slide::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,0.65);
+}
+
+/* CONTENT ABOVE SLIDES */
+.hero-content{
+    position:relative;
+    z-index:2;
+    max-width:700px;
+}
+
+.hero h1{
+    font-size:70px;
+    margin-bottom:25px;
+}
+
+.hero p{
+    color:#ddd;
+    line-height:1.8;
+    margin-bottom:15px;
+}
+
+/* BUTTON */
+.watch-btn{
+    padding:14px 28px;
+    background:#ff1f1f;
+    border:none;
+    color:white;
+    border-radius:8px;
+    cursor:pointer;
+    transition:0.2s;
+}
+
+.watch-btn:hover{
+    transform:translateY(-3px);
+}
+/* SCROLL CONTAINER */
+.slider-wrapper{
+    overflow-x:auto;
+    padding-bottom:10px;
+}
+
+/* HORIZONTAL LAYOUT */
+.slider-track{
+    display:flex;
+    gap:20px;
+    width:max-content;
+}
+
+/* CARD */
+.article-card{
+    min-width:280px;
+    background:#111;
+    border-radius:15px;
+    overflow:hidden;
+    position:relative;
+    transition:0.3s;
+}
+
+.article-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 15px 40px rgba(255,0,0,0.3);
+}
+
+/* IMAGE */
+.article-card img{
+    width:100%;
+    height:250px;
+    object-fit:cover;
+}
+
+/* CONTENT */
+.article-content{
+    padding:15px;
+}
+
+/* BADGE */
+.badge{
+    position:absolute;
+    top:10px;
+    left:10px;
+    background:red;
+    padding:5px 10px;
+    font-size:11px;
+    border-radius:20px;
+}
+
+/* META */
+.meta{
+    display:flex;
+    justify-content:space-between;
+    margin-top:10px;
+    font-size:13px;
+    color:#fff;
+}
+
+/* 🔴 RED SCROLLBAR (CHROME / EDGE) */
+.slider-wrapper::-webkit-scrollbar{
+    height:8px;
+}
+
+.slider-wrapper::-webkit-scrollbar-track{
+    background:#111;
+    border-radius:10px;
+}
+
+.slider-wrapper::-webkit-scrollbar-thumb{
+    background:red;
+    border-radius:10px;
+}
+
+.slider-wrapper::-webkit-scrollbar-thumb:hover{
+    background:#ff2a2a;
+}
 </style>
 </head>
 
@@ -481,6 +681,15 @@ nav{
 
 <section class="hero">
 
+<!-- SLIDES (BACKGROUND ONLY) -->
+
+<div class="hero-slide" style="background-image:url('https://i.pinimg.com/736x/e4/d8/3a/e4d83a71e38fd2494ea3e96495ae9dc2.jpg')"></div>
+
+<div class="hero-slide" style="background-image:url('https://i.pinimg.com/736x/d9/ee/0e/d9ee0e2e6875a9e9205f6dc47f34ff58.jpg')"></div>
+<div class="hero-slide" style="background-image:url('https://i.pinimg.com/736x/54/bd/28/54bd28dd5fe3af5a7d6332170ce8f2b0.jpg')"></div>
+<div class="hero-slide" style="background-image:url('https://i.pinimg.com/736x/b2/f8/43/b2f843111df8347133dca44dc2c5f57b.jpg')"></div>
+
+<!-- OVERLAY CONTENT (STAYS STATIC) -->
 <div class="hero-content">
 
 <h1>Experience Cinema Beyond The Screen</h1>
@@ -488,19 +697,17 @@ nav{
 <p>
 MoviePulse is an entertainment website covering movie news, reviews, trailers, cast updates, release dates, and TV series information from around the world.
 </p>
-    <p>
-    Our platform is updated regularly with new releases, popular films,
-    and detailed movie information to help users stay up to date with
-    the latest in the film industry.
-  </p>
+
+<p>
+Our platform is updated regularly with new releases, popular films,
+and detailed movie information to help users stay up to date with
+the latest in the film industry.
+</p>
 
 <div class="hero-buttons">
-
-<button class="watch-btn"
-onclick="location.href='poster.html'">
+<button class="watch-btn" onclick="location.href='poster.html'">
 Explore Movies
 </button>
-
 </div>
 
 </div>
@@ -658,43 +865,120 @@ a dark superhero crime series set in 1930s New York.
 
 <section class="articles">
 
-<h2 class="section-title">Latest updates</h2>
-      <p>
-    Check out the newest movies added to our collection. We continuously<br>
-    update our database with trending films and upcoming releases.
-  </p><br><br>
+<h2 class="section-title">Latest Updates</h2>
+
+<p class="section-desc">
+Check out the newest movies added to our collection. We continuously
+update our database with trending films and upcoming releases.
+</p>
+
+<div class="slider-wrapper">
 
 
-<div class="article-grid">
+<div class="slider-track">
 
+<!-- CARD 1 -->
 <div class="article-card">
+<div class="badge">🔥 NEW</div>
 <img src="https://i.pinimg.com/736x/5e/2a/3d/5e2a3debf547654a67b91c8e67074117.jpg">
 <div class="article-content">
-<h3>Why Shrek Still Dominates Animation</h3>
-<p>
-Before Shrek, many animated films followed traditional fairy-tale formulas. Shrek flipped those stories upside down by making the ogre the hero and mocking classic fairy-tale clichés.
-</p>
+<h3>Shrek Returns</h3>
+<p>Animated • 2026</p>
+<div class="meta">
+<span>⭐ 8.7</span>
+<span>📅 2026</span>
+</div>
 </div>
 </div>
 
+<!-- CARD 2 -->
 <div class="article-card">
+<div class="badge">⭐ TOP</div>
 <img src="https://i.pinimg.com/736x/8e/9e/96/8e9e9686668fb05b78d82e6fee2e7d6e.jpg">
 <div class="article-content">
-<h3>Kung Fu Panda’s Return</h3>
-<p>
-Kung Fu Panda is a popular animated martial arts film series centered on an unlikely hero named Po, a clumsy but kind-hearted panda who dreams of becoming a kung fu master. His life changes when he is unexpectedly chosen as the legendary Dragon Warrior, destined to protect the Valley of Peace.
-</p>
+<h3>Kung Fu Panda 4</h3>
+<p>Action • Comedy</p>
+<div class="meta">
+<span>⭐ 9.1</span>
+<span>📅 2025</span>
+</div>
 </div>
 </div>
 
+<!-- CARD 3 -->
 <div class="article-card">
+<div class="badge">⚡ HOT</div>
 <img src="https://i.pinimg.com/736x/a2/dc/61/a2dc613da24ff1b8bc47b25e7582d5b2.jpg">
 <div class="article-content">
-<h3>Venom’s Darkest Chapter</h3>
-<p>
-Eddie Brock was once a respected journalist in San Francisco, known for chasing truth and exposing powerful people who tried to hide their crimes. But everything in his life collapsed when one investigation went wrong. He lost his job, his reputation, and the life he had built. Alone and struggling, Eddie felt like the world had turned its back on him.
-</p>
+<h3>Venom 3</h3>
+<p>Action • Dark</p>
+<div class="meta">
+<span>⭐ 8.4</span>
+<span>📅 2026</span>
 </div>
+</div>
+</div>
+
+</div>
+
+</div>
+
+
+</section>
+<section class="articles">
+
+<h2 class="section-title">Upcoming</h2>
+
+<p class="section-desc">
+Discover upcoming movies that are about to hit cinemas and streaming platforms.
+</p>
+
+<div class="slider-wrapper">
+
+<div class="slider-track">
+
+<!-- CARD 1 -->
+<div class="article-card">
+<div class="badge">SOON</div>
+<img src="https://i.pinimg.com/736x/57/ce/d3/57ced3b4f4db625a33879ba6afcf6b23.jpg">
+<div class="article-content">
+<h3>Mission Impossible 8</h3>
+<p>Action • Thriller</p>
+<div class="meta">
+<span>⭐ 9.0</span>
+<span>📅 2026</span>
+</div>
+</div>
+</div>
+
+<!-- CARD 2 -->
+<div class="article-card">
+<div class="badge">SOON</div>
+<img src="https://i.pinimg.com/736x/d9/ee/0e/d9ee0e2e6875a9e9205f6dc47f34ff58.jpg">
+<div class="article-content">
+<h3>Hail Mary 2</h3>
+<p>SCI-FI • Adventure</p>
+<div class="meta">
+<span>⭐ 8.8</span>
+<span>📅 2026</span>
+</div>
+</div>
+</div>
+
+<!-- CARD 3 -->
+<div class="article-card">
+<div class="badge">SOON</div>
+<img src="https://i.pinimg.com/736x/a2/dc/61/a2dc613da24ff1b8bc47b25e7582d5b2.jpg">
+<div class="article-content">
+<h3>Venom: Last Hunt</h3>
+<p>Action • Dark</p>
+<div class="meta">
+<span>⭐ 8.5</span>
+<span>📅 2026</span>
+</div>
+</div>
+</div>
+
 </div>
 
 </div>
@@ -728,6 +1012,15 @@ setTimeout(() => {
 
 });
 
+
+let slides = document.querySelectorAll(".hero-slide");
+let i = 0;
+
+setInterval(() => {
+    slides[i].classList.remove("active");
+    i = (i + 1) % slides.length;
+    slides[i].classList.add("active");
+}, 5000);
 </script>
 
 </body>
