@@ -108,6 +108,43 @@ nav a.active::after{
     align-items:center;
     padding:0 7%;
 }
+  .poster-slider{
+    padding:120px 7% 40px;
+}
+
+.slider-box{
+    position:relative;
+    height:500px;
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.slider-box img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.slider-overlay{
+    position:absolute;
+    left:0;
+    bottom:0;
+    width:100%;
+    padding:40px;
+    background:linear-gradient(to top,
+    rgba(0,0,0,.95),
+    transparent);
+}
+
+.slider-overlay h2{
+    font-size:50px;
+    margin-bottom:10px;
+}
+
+.slider-overlay p{
+    max-width:600px;
+    color:#ddd;
+}
 
 .hero-content{
     max-width:700px;
@@ -181,9 +218,19 @@ nav a.active::after{
 }
 
 .movie-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    gap:28px;
+    display:flex;
+    gap:20px;
+    overflow-x:auto;
+    padding-bottom:10px;
+    scrollbar-width:none;
+}
+
+.movie-grid::-webkit-scrollbar{
+    display:none;
+}
+
+.movie-card{
+    min-width:230px;
 }
 
 .movie-card{
@@ -478,6 +525,78 @@ nav{
 </nav>
 
 </header>
+  <script>
+
+const slides = [
+
+{
+title:"Spider Noir",
+desc:"A dark superhero crime series set in 1930s New York.",
+img:"https://i.pinimg.com/736x/e4/d8/3a/e4d83a71e38fd2494ea3e96495ae9dc2.jpg"
+},
+
+{
+title:"Hail Mary",
+desc:"A sci-fi survival journey beyond Earth.",
+img:"https://i.pinimg.com/736x/d9/ee/0e/d9ee0e2e6875a9e9205f6dc47f34ff58.jpg"
+},
+
+{
+title:"Crime 101",
+desc:"A gripping crime thriller coming in 2026.",
+img:"https://i.pinimg.com/736x/b3/48/ef/b348ef761252b78c6b2dc007e286fca9.jpg"
+},
+
+{
+title:"Berlin Season 2",
+desc:"Berlin and the Lady with an Ermine.",
+img:"https://i.pinimg.com/736x/57/ce/d3/57ced3b4f4db625a33879ba6afcf6b23.jpg"
+}
+
+];
+
+let currentSlide = 0;
+
+function changeSlide(){
+
+document.getElementById("sliderImg").src =
+slides[currentSlide].img;
+
+document.getElementById("sliderTitle").innerText =
+slides[currentSlide].title;
+
+document.getElementById("sliderDesc").innerText =
+slides[currentSlide].desc;
+
+currentSlide++;
+
+if(currentSlide >= slides.length){
+currentSlide = 0;
+}
+
+}
+
+setInterval(changeSlide,5000);
+
+</script>
+  <section class="poster-slider">
+
+<div class="slider-box">
+
+<img id="sliderImg"
+src="https://i.pinimg.com/736x/e4/d8/3a/e4d83a71e38fd2494ea3e96495ae9dc2.jpg">
+
+<div class="slider-overlay">
+<h2 id="sliderTitle">Spider Noir</h2>
+
+<p id="sliderDesc">
+A dark superhero crime series set in 1930s New York.
+</p>
+</div>
+
+</div>
+
+</section>
 
 <section class="hero">
 
