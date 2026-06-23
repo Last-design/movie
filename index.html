@@ -15,7 +15,7 @@
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:Arial, sans-serif;
+    font-family:'Poppins',sans-serif;
 }
 
 body{
@@ -94,90 +94,130 @@ nav a.active::after{
 }
 
 /* HERO */
-/* HERO SECTION */
-.hero-slider{
+.hero{
     height:100vh;
-    width:100%;
-    position:relative;
-    overflow:hidden;
-}
+    background:
+    linear-gradient(to top,
+    rgba(0,0,0,0.95),
+    rgba(0,0,0,0.45)),
+    url('mali.jpg');
 
-.hero-slide{
-    width:100%;
-    height:100%;
-    position:relative;
-}
-
-.hero-slide img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    position:absolute;
-    top:0;
-    left:0;
-    z-index:1;
-    opacity:1;
-    transition:opacity 0.4s ease;
-}
-
-/* OVERLAY */
-.hero-overlay{
-    position:absolute;
-    inset:0;
+    background-size:cover;
+    background-position:center;
     display:flex;
-    flex-direction:column;
-    justify-content:center;
+    align-items:center;
     padding:0 7%;
-    background:linear-gradient(
-        to right,
-        rgba(0,0,0,0.92),
-        rgba(0,0,0,0.55),
-        rgba(0,0,0,0.2)
-    );
-    z-index:2;
 }
 
-/* TAG */
-.tag{
-    color:#ff1f1f;
-    font-weight:700;
-    letter-spacing:2px;
-    margin-bottom:15px;
-}
-
-/* TITLE */
-.hero-overlay h1{
-    font-size:70px;
+.hero-content{
     max-width:700px;
-    line-height:1;
-    margin-bottom:20px;
+}
+
+.featured-tag{
+    display:inline-block;
+    background:#ff1f1f;
+    padding:10px 18px;
+    border-radius:40px;
+    font-size:13px;
+    font-weight:600;
+    letter-spacing:1px;
+    margin-bottom:25px;
+}
+
+.hero h1{
+    font-size:78px;
+    line-height:1.1;
+    margin-bottom:25px;
+}
+
+.hero p{
+    color:#ddd;
+    line-height:1.9;
+    font-size:18px;
+    margin-bottom:35px;
+}
+
+.hero-buttons{
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.watch-btn,
+.info-btn{
+    padding:15px 32px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:16px;
+    font-weight:600;
+    transition:0.3s ease;
+}
+
+.watch-btn{
+    background:#ff1f1f;
     color:white;
 }
 
-/* TEXT */
-.hero-overlay p{
-    max-width:650px;
-    color:#ddd;
-    line-height:1.7;
+.info-btn{
+    background:rgba(255,255,255,0.1);
+    border:1px solid rgba(255,255,255,0.15);
+    color:white;
+}
+
+.watch-btn:hover,
+.info-btn:hover{
+    transform:translateY(-5px);
+}
+
+/* TRENDING */
+.trending{
+    padding:90px 7%;
+}
+
+.section-title{
+    font-size:42px;
+    margin-bottom:40px;
+}
+
+.movie-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:28px;
+}
+
+.movie-card{
+    background:#111;
+    border-radius:18px;
+    overflow:hidden;
+    transition:0.4s ease;
+    cursor:pointer;
+}
+
+.movie-card img{
+    width:100%;
+    height:340px;
+    object-fit:cover;
+}
+
+.movie-info{
+    padding:18px;
+}
+
+.movie-info h3{
     margin-bottom:10px;
 }
 
-/* BUTTON */
-.hero-overlay button{
-    width:180px;
-    padding:12px;
-    margin-top:15px;
-    border:none;
-    background:#ff1f1f;
-    color:white;
-    font-weight:bold;
-    cursor:pointer;
-    transition:0.3s;
+.movie-info p{
+    color:#aaa;
+    font-size:14px;
 }
 
-.hero-overlay button:hover{
-    background:#cc1414;
+.movie-card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 20px 45px rgba(255,31,31,0.25);
 }
+
 /* FEATURED NEWS */
 .news-section{
     padding:20px 7% 90px;
@@ -438,52 +478,6 @@ nav{
 </nav>
 
 </header>
-<script>
-const slides = [
-  "https://i.pinimg.com/736x/e4/d8/3a/e4d83a71e38fd2494ea3e96495ae9dc2.jpg",
-  "https://i.pinimg.com/736x/d9/ee/0e/d9ee0e2e6875a9e9205f6dc47f34ff58.jpg",
-  "https://i.pinimg.com/736x/b3/48/ef/b348ef761252b78c6b2dc007e286fca9.jpg",
-  "https://i.pinimg.com/736x/57/ce/d3/57ced3b4f4db625a33879ba6afcf6b23.jpg"
-];
-
-let i = 0;
-
-window.addEventListener("load", () => {
-  const img = document.getElementById("sliderImg");
-
-  if (!img) return;
-
-  setInterval(() => {
-    i = (i + 1) % slides.length;
-
-    img.style.opacity = 0;
-
-    setTimeout(() => {
-      img.src = slides[i];
-      img.style.opacity = 1;
-    }, 300);
-
-  }, 5000);
-});
-</script>
-  <section class="poster-slider">
-
-<div class="slider-box">
-
-<img id="sliderImg"
-src="https://i.pinimg.com/736x/e4/d8/3a/e4d83a71e38fd2494ea3e96495ae9dc2.jpg">
-
-<div class="slider-overlay">
-<h2 id="sliderTitle">Spider Noir</h2>
-
-<p id="sliderDesc">
-A dark superhero crime series set in 1930s New York.
-</p>
-</div>
-
-</div>
-
-</section>
 
 <section class="hero">
 
