@@ -111,6 +111,59 @@ nav a.active{
   gap:16px;
   margin-top:20px;
 }
+  .content-wrap{
+display:flex;
+gap:30px;
+align-items:flex-start;
+margin-bottom:20px;
+}
+
+.poster-column{
+width:320px;
+flex-shrink:0;
+}
+
+.hero-poster{
+width:100%;
+border-radius:12px;
+}
+
+.movie-rating{
+text-align:center;
+font-size:28px;
+margin-top:12px;
+}
+
+.article-side{
+flex:1;
+line-height:1.9;
+}
+
+.article-side p{
+margin-bottom:18px;
+}
+
+.video-frame{
+width:100%;
+height:550px;
+border:none;
+border-radius:12px;
+}
+
+@media(max-width:768px){
+
+.content-wrap{
+flex-direction:column;
+}
+
+.poster-column{
+width:100%;
+max-width:320px;
+margin:auto;
+}
+
+}
+
 
   .hero-wrapper{
   position:relative;
@@ -154,10 +207,6 @@ nav a.active{
   max-width: 100%;
 }
 /* RESPONSIVE */
-@media(max-width:900px){
-  .hero-poster{height:260px;}
-  .video-frame{height:260px;}
-}
   .starring-section{
   margin:20px 0;
   padding:15px;
@@ -1801,65 +1850,71 @@ function loadMain(movie){
   const recommendations = getRecommendations(movie.id);
 
   document.getElementById("mainArea").innerHTML = `
-    <div class="movie-page">
+<div class="movie-page">
 
-      <!-- TITLE -->
-      <h1 class="title">${movie.title}</h1>
+<!-- TITLE -->
 
-      <!-- POSTER -->
-     <div class="hero">
+<h1 class="title">${movie.title}</h1>
+
+<!-- POSTER + ARTICLE -->
+
+<div class="content-wrap">
+
+<div class="poster-column">
   <img class="hero-poster" src="${movie.poster}" alt="${movie.title}">
+
+  <div class="movie-rating">
+    ${"⭐".repeat(Math.round(movie.rating))}
+  </div>
 </div>
-    
 
-      <!-- RATING -->
-      <div class="movie-rating">
-        ⭐ ${movie.rating}/5
-      </div>
+<div class="article-side">
+  ${movie.article || ""}
+</div>
 
-      <!-- ARTICLE -->
-      <div class="article-text">
-        ${movie.article || ""}
-      </div>
+</div>
 
-      <!-- TRAILER -->
-      <h2 class="section-title">Official Trailer</h2>
-      <iframe class="video-frame"
-        src="${movie.trailer}"
-        allowfullscreen>
-      </iframe>
+<!-- ARTICLE CONTINUES FULL WIDTH -->
 
-      <!-- SUMMARY -->
-      <div class="summary-box">
-        <h2 class="section-title">Movie Summary</h2>
-        <p>${movie.summary || ""}</p>
-      </div>
+<div class="article-full"> </div>
 
-      <!-- STARRING -->
-      <div class="starring-section">
-        <h2 class="section-title">Starring</h2>
-        <p>
-          ${Array.isArray(movie.starring)
-            ? movie.starring.join(", ")
-            : movie.starring || "N/A"}
-        </p>
-      </div>
+<!-- TRAILER -->
 
-     <h2 class="section-title">Recommendation Movies</h2>
-      <div class="recommend-grid">
-        ${recommendations.map(rec => `
-          <div class="recommend-card"
-               onclick="loadMain(movies.find(m => m.id === ${rec.id}))">
+<h2 class="section-title">Official Trailer</h2>
 
-            <img src="${rec.poster}" alt="${rec.title}">
-            <h4>${rec.title}</h4>
+<iframe class="video-frame" src="${movie.trailer}" allowfullscreen> </iframe>
 
-          </div>
-        `).join("")}
-      </div>
+<!-- SUMMARY -->
 
-    </div>
-  `;
+<div class="summary-box"> <h2 class="section-title">Movie Summary</h2> <p>${movie.summary || ""}</p> </div>
+
+<!-- STARRING -->
+
+<div class="starring-section"> <h2 class="section-title">Starring</h2> <p> ${Array.isArray(movie.starring) ? movie.starring.join(", ") : movie.starring || "N/A"} </p> </div>
+
+<!-- RECOMMENDATIONS -->
+
+<h2 class="section-title">Recommended Movies</h2>
+
+<div class="recommend-grid">
+
+${recommendations.map(rec => `
+
+  <div class="recommend-card"
+       onclick="loadMain(movies.find(m => m.id === ${rec.id}))">
+
+    <img src="${rec.poster}" alt="${rec.title}">
+    <h4>${rec.title}</h4>
+
+  </div>
+
+`).join("")}
+
+</div>
+
+</div>
+
+`;
 }
 
 loadMain(current);
