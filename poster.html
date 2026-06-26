@@ -71,8 +71,10 @@
 
 .search-wrap{
     flex:1;
+      width:60%;
     max-width:500px;
     margin:0 30px;
+      position:relative;
 }
 
 #searchInput{
@@ -243,24 +245,36 @@ nav a.active::after{
 }
       /* suggestion box */
       .suggest-box{
-    position:absolute;
-    width:60%;
-    max-width:400px;
-    background:#111;
-    border:1px solid #222;
-    border-radius:8px;
-    margin-top:5px;
-    z-index:999;
-    display:none;
-    overflow:hidden;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: #141414;
+    border: 1px solid #2a2a2a;
+    border-radius: 6px;
+    margin-top: 6px;
+    z-index: 1000;
+    display: none;
+    max-height: 220px;
+    overflow-y: auto;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.4);
 }
 
 .suggest-item{
-    padding:10px;
-    cursor:pointer;
-    color:#fff;
-    border-bottom:1px solid #222;
+    padding: 8px 12px;
+    cursor: pointer;
+    color: #e5e5e5;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    border-bottom: 1px solid #222;
+    transition: background 0.2s ease;
 }
+
+.suggest-item:hover{
+    background: #e50914;
+    color: white;
+}
+
 
 .suggest-item:hover{
     background:#ff1f1f;
@@ -277,8 +291,9 @@ nav a.active::after{
 
   <div class="search-wrap">
     <input id="searchInput" placeholder="Search movies..." />
+          <div id="suggestBox" class="suggest-box"></div>
   </div>
-      <div id="suggestBox" class="suggest-box"></div>
+    
 
   
   <nav class="links">
