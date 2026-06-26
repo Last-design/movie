@@ -187,6 +187,15 @@ nav a.active::after{
   text-align:center;
   border-top:1px solid #222;
 }
+      .poster-header{
+    text-align:center;
+    padding:120px 20px 30px;
+}
+
+.poster-header h1{
+    font-size:40px;
+    color:#fff;
+}
 
 .footer-container{
   max-width:1000px;
@@ -232,6 +241,30 @@ nav a.active::after{
       main{
     padding-top:78px;
 }
+      /* suggestion box */
+      .suggest-box{
+    position:absolute;
+    width:60%;
+    max-width:400px;
+    background:#111;
+    border:1px solid #222;
+    border-radius:8px;
+    margin-top:5px;
+    z-index:999;
+    display:none;
+    overflow:hidden;
+}
+
+.suggest-item{
+    padding:10px;
+    cursor:pointer;
+    color:#fff;
+    border-bottom:1px solid #222;
+}
+
+.suggest-item:hover{
+    background:#ff1f1f;
+}
 </style>
 </head>
 <body>
@@ -245,6 +278,7 @@ nav a.active::after{
   <div class="search-wrap">
     <input id="searchInput" placeholder="Search movies..." />
   </div>
+      <div id="suggestBox" class="suggest-box"></div>
 
   
   <nav class="links">
@@ -282,6 +316,17 @@ nav a.active::after{
     <p class="footer-copy">
       © MoviePulse. All rights reserved.
     </p>
+  </div>
+ </footer>
+      <section class="poster-header">
+
+  <h1>Explore Movies</h1>
+
+  <p>
+    Discover the latest movies, trending films, and upcoming releases all in one place.
+  </p>
+
+</section>
 
 <script>
   // MOVIES ARRAY (now embedded here, no movie.js needed)
@@ -812,6 +857,45 @@ function goReview(id){
 searchInput.addEventListener('keydown', e => {
   if(e.key === 'Enter'){
     location.href = `posters.html?q=${encodeURIComponent(searchInput.value.trim())}`;
+  }
+});
+      const suggestBox = document.getElementById("suggestBox");
+
+searchInput.addEventListener("input", () => {
+  const q = searchInput.value.trim().toLowerCase();
+
+  if (!q) {
+    suggestBox.style.display = "none";
+    renderPosters(movies);
+    return;
+  }
+
+  const matches = movies.filter(m =>
+    m.title.toLowerCase().includes(q)
+  ).slice(0, 5); // only top 5 suggestions
+
+  if (matches.length === 0) {
+    suggestBox.style.display = "none";
+    return;
+  }
+
+  suggestBox.innerHTML = matches.map(m => `
+    <div class="suggest-item" onclick="selectMovie(${m.id})">
+      ${m.title}
+    </div>
+  `).join("");
+
+  suggestBox.style.display = "block";
+});
+      function selectMovie(id){
+  const movie = movies.find(m => m.id === id);
+
+  // redirect to trailer page (your system)
+  window.location.href = `trailer.html?id=${movie.id}`;
+}
+      document.addEventListener("click", (e) => {
+  if (!e.target.closest(".search-box")) {
+    suggestBox.style.display = "none";
   }
 });
 </script>
