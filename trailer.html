@@ -2097,7 +2097,10 @@ function getRecommendations(currentId){
 
 /* ===================== MAIN PAGE LOADER ===================== */
 function loadMain(movie){
-
+  window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
   const recommendations = getRecommendations(movie.id);
 
   document.getElementById("mainArea").innerHTML = `
@@ -2151,8 +2154,8 @@ function loadMain(movie){
 
 ${recommendations.map(rec => `
 
-  <div class="recommend-card"
-       onclick="loadMain(movies.find(m => m.id === ${rec.id}))">
+ <div class="recommend-card"
+     onclick="window.location.href='trailer.html?id=${rec.id}'">
 
     <img src="${rec.poster}" alt="${rec.title}">
     <h4>${rec.title}</h4>
