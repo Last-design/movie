@@ -835,88 +835,33 @@ const movies = [
 
 
 /////////////////////////////
-// 1. ELEMENTS
-/////////////////////////////
-
-const postersRow = document.getElementById('postersRow');
-const searchInput = document.getElementById('searchInput');
-
-
-/////////////////////////////
-// 2. SAFE HTML
-/////////////////////////////
-
-function escapeHtml(s){
-  return s ? s.replace(/&/g,'&amp;').replace(/</g,'&lt;') : '';
-}
-
-
-/////////////////////////////
-// 3. RENDER POSTERS
-/////////////////////////////
-
-function renderPosters(list){
-
-  if(!postersRow){
-    console.error("❌ postersRow not found in HTML");
-    return;
-  }
-
-  postersRow.innerHTML = '';
-
-  list.forEach(m => {
-
-    const div = document.createElement('div');
-    div.className = 'card';
-
-    const rating = Math.round(m.rating || 0);
-
-    div.innerHTML = `
-      <img src="${m.poster || ''}" alt="${escapeHtml(m.title || '')}">
-
-      <div class="overlay"></div>
-
-      <div class="hover-buttons">
-        <button class="btn" onclick="goTrailer('${m.id}')">
-          ▶ Read more..
-        </button>
-      </div>
-
-      <div class="meta">
-        <div style="font-weight:700">${m.title || ''}</div>
-        <div style="font-size:12px;color:#ccc">${m.date || ''}</div>
-        <div class="rating">
-          ${'★'.repeat(rating) + '☆'.repeat(5 - rating)}
-        </div>
-      </div>
-    `;
-
-    postersRow.appendChild(div);
-  });
-}
-
-
-/////////////////////////////
 // ELEMENTS
 /////////////////////////////
 
+const postersRow = document.getElementById("postersRow");
 const searchInput = document.getElementById("searchInput");
 const suggestBox = document.getElementById("suggestBox");
-const container = document.getElementById("postersRow");
 
 /////////////////////////////
 // RENDER MOVIES
 /////////////////////////////
 
-function renderMovies(list) {
-  container.innerHTML = "";
+function renderMovies(list){
 
-  list.forEach(movie => {
-    container.innerHTML += `
+  postersRow.innerHTML = "";
+
+  list.forEach(m => {
+
+    const stars = "★".repeat(Math.round(m.rating)) + "☆".repeat(5 - Math.round(m.rating));
+
+    postersRow.innerHTML += `
       <div class="card">
-        <img src="${movie.poster}" alt="${movie.title}">
-        <h3>${movie.title}</h3>
-        <p>${movie.rating} ⭐</p>
+        <img src="${m.poster}" alt="${m.title}">
+        <div class="meta">
+          <h3>${m.title}</h3>
+          <div>${m.date}</div>
+          <div class="rating">${stars}</div>
+        </div>
       </div>
     `;
   });
@@ -929,14 +874,14 @@ function renderMovies(list) {
 renderMovies(movies);
 
 /////////////////////////////
-// FILTER BY GENRE
+// FILTER
 /////////////////////////////
 
-function showAll() {
+function showAll(){
   renderMovies(movies);
 }
 
-function showGenre(genre) {
+function showGenre(genre){
   const filtered = movies.filter(m =>
     m.genre && m.genre.includes(genre)
   );
@@ -944,13 +889,14 @@ function showGenre(genre) {
 }
 
 /////////////////////////////
-// SEARCH (LIVE FILTER)
+// SEARCH + LIVE FILTER
 /////////////////////////////
 
 searchInput.addEventListener("input", () => {
-  const q = searchInput.value.trim().toLowerCase();
 
-  if (!q) {
+  const q = searchInput.value.toLowerCase();
+
+  if(!q){
     suggestBox.style.display = "none";
     renderMovies(movies);
     return;
@@ -962,14 +908,14 @@ searchInput.addEventListener("input", () => {
 
   renderMovies(filtered);
 
-  const matches = filtered.slice(0, 5);
+  const top = filtered.slice(0,5);
 
-  if (matches.length === 0) {
+  if(top.length === 0){
     suggestBox.style.display = "none";
     return;
   }
 
-  suggestBox.innerHTML = matches.map(m => `
+  suggestBox.innerHTML = top.map(m => `
     <div class="suggest-item" onclick="selectMovie(${m.id})">
       ${m.title}
     </div>
@@ -979,43 +925,33 @@ searchInput.addEventListener("input", () => {
 });
 
 /////////////////////////////
-// SUGGEST CLICK
+// SELECT MOVIE
 /////////////////////////////
 
-function selectMovie(id) {
+function selectMovie(id){
   location.href = `trailer.html?id=${id}`;
 }
 
 /////////////////////////////
-// CLOSE SUGGESTIONS
+// CLOSE SUGGEST
 /////////////////////////////
 
-document.addEventListener("click", (e) => {
-  if (!e.target.closest(".search-wrap")) {
+document.addEventListener("click", e => {
+  if(!e.target.closest(".search-wrap")){
     suggestBox.style.display = "none";
   }
 });
 
 /////////////////////////////
-// URL SEARCH SUPPORT
-/////////////////////////////
-
-const urlQ = new URLSearchParams(location.search).get("q");
-
-if (urlQ) {
-  searchInput.value = urlQ;
-  searchInput.dispatchEvent(new Event("input"));
-}
-
-/////////////////////////////
-// ENTER KEY SEARCH
+// ENTER KEY
 /////////////////////////////
 
 searchInput.addEventListener("keydown", e => {
-  if (e.key === "Enter") {
-    location.href = `poster.html?q=${encodeURIComponent(searchInput.value.trim())}`;
+  if(e.key === "Enter"){
+    location.href = `poster.html?q=${searchInput.value}`;
   }
 });
+</script>
 </body>
 </html>
 
