@@ -184,7 +184,16 @@ nav a.active{
   z-index: 9999;
 }
 
-.social-icons a {
+
+.social-icons i {
+  font-size: 22px;
+}
+
+.social-icons a:hover{
+    background:#ff1f1f;
+    transform:translateY(-3px);
+}
+        .social-icons a {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -194,15 +203,14 @@ nav a.active{
   pointer-events: auto;
   position: relative;
   z-index: 9999;
+  cursor: pointer;
 }
 
-.social-icons i {
-  font-size: 22px;
-}
-
-.social-icons a:hover{
-    background:#ff1f1f;
-    transform:translateY(-3px);
+/* IMPORTANT: stop transform from breaking clicks */
+.social-icons a:hover {
+  background:#ff1f1f;
+  transform: translateY(-3px);
+  z-index: 10;
 }
         .social-text{
     margin-top:20px;
@@ -260,9 +268,10 @@ nav a.active{
   </a>
 <a href="https://www.instagram.com/moviepulse_247"
    target="_blank"
-   aria-label="Instagram">
+   aria-label="Instagram"
+   class="ig-link">
 
-  <span style="font-size:22px;">📷</span>
+  <i class="fa-brands fa-instagram"></i>
 
 </a>
 
