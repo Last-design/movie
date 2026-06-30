@@ -835,6 +835,7 @@ const movies = [
 
 
 /////////////////////////////
+/////////////////////////////
 // ELEMENTS
 /////////////////////////////
 
@@ -852,8 +853,6 @@ function renderMovies(list){
 
   list.forEach(m => {
 
-    const stars = "★".repeat(Math.round(m.rating)) + "☆".repeat(5 - Math.round(m.rating));
-
     postersRow.innerHTML += `
       <div class="card">
         <img src="${m.poster}" alt="${m.title}">
@@ -861,7 +860,7 @@ function renderMovies(list){
         <div class="meta">
           <h3>${m.title}</h3>
           <div>${m.date || ""}</div>
-          <div class="rating">${stars}</div>
+          <div>${"★".repeat(Math.round(m.rating || 0))}</div>
         </div>
 
         <div class="hover-buttons">
@@ -869,37 +868,20 @@ function renderMovies(list){
             ▶ Read more...
           </button>
         </div>
-
       </div>
     `;
   });
 }
 
-function goTrailer(id){
-  location.href = `trailer.html?id=${id}`;
-}
+/////////////////////////////
+// INITIAL LOAD
 /////////////////////////////
 
 renderMovies(movies);
 
 /////////////////////////////
-// FILTER
+// SEARCH ONLY (NO FILTER)
 /////////////////////////////
-function showAll(){
-  renderMovies(movies);
-}
-
-function showGenre(genre){
-
-  const g = genre.toLowerCase();
-
-  const filtered = movies.filter(m =>
-    Array.isArray(m.genre) &&
-    m.genre.some(x => x.toLowerCase() === g)
-  );
-
-  renderMovies(filtered);
-}
 
 searchInput.addEventListener("input", () => {
 
@@ -917,12 +899,7 @@ searchInput.addEventListener("input", () => {
 
   renderMovies(filtered);
 
-  const top = filtered.slice(0,5);
-
-  if(top.length === 0){
-    suggestBox.style.display = "none";
-    return;
-  }
+  const top = filtered.slice(0, 5);
 
   suggestBox.innerHTML = top.map(m => `
     <div class="suggest-item" onclick="selectMovie(${m.id})">
@@ -930,12 +907,20 @@ searchInput.addEventListener("input", () => {
     </div>
   `).join("");
 
-  suggestBox.style.display = "block";
+  suggestBox.style.display = top.length ? "block" : "none";
 });
+
+/////////////////////////////
+// SELECT MOVIE
+/////////////////////////////
 
 function selectMovie(id){
   location.href = `trailer.html?id=${id}`;
 }
+
+/////////////////////////////
+// CLOSE SUGGESTIONS
+/////////////////////////////
 
 document.addEventListener("click", e => {
   if(!e.target.closest(".search-wrap")){
@@ -943,11 +928,23 @@ document.addEventListener("click", e => {
   }
 });
 
+/////////////////////////////
+// ENTER SEARCH
+/////////////////////////////
+
 searchInput.addEventListener("keydown", e => {
   if(e.key === "Enter"){
     location.href = `poster.html?q=${encodeURIComponent(searchInput.value)}`;
   }
 });
+
+/////////////////////////////
+// TRAILER NAV
+/////////////////////////////
+
+function goTrailer(id){
+  location.href = `trailer.html?id=${id}`;
+}
 </script>
 </body>
 </html>
