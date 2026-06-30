@@ -270,6 +270,26 @@ nav a.active::after{
 .suggest-item:hover{
     background:#ff1f1f;
 }
+      .filter-bar {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 15px 0;
+}
+
+.filter-bar button {
+  padding: 8px 14px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  background: #222;
+  color: white;
+}
+
+.filter-bar button:hover {
+  background: var(--accent);
+}
 </style>
 </head>
 <body>
@@ -295,6 +315,15 @@ nav a.active::after{
       <a href="contact.html">Contact</a>
   </nav>
 </header>
+      <!-- ✅ FILTER BUTTONS (PUT HERE) -->
+<div class="filter-bar">
+  <button onclick="showAll()">All</button>
+  <button onclick="showGenre('Action')">Action</button>
+  <button onclick="showGenre('Horror')">Horror</button>
+  <button onclick="showGenre('Animation')">Animation</button>
+  <button onclick="showGenre('Superhero')">Superhero</button>
+  <button onclick="showGenre('Sci-Fi')">Sci-Fi</button>
+</div>
 
 </section>
 
@@ -326,13 +355,6 @@ nav a.active::after{
     </p>
   </div>
  </footer>
-
-<button onclick="showAll()">All</button>
-<button onclick="showGenre('Action')">Action</button>
-<button onclick="showGenre('Horror')">Horror</button>
-<button onclick="showGenre('Animation')">Animation</button>
-<button onclick="showGenre('Superhero')">Superhero</button>
-<button onclick="showGenre('Sci-Fi')">Sci-Fi</button>
 <script>
   // MOVIES ARRAY (now embedded here, no movie.js needed)
 const movies = [
@@ -875,75 +897,72 @@ function renderPosters(list){
 
 
 /////////////////////////////
-// 4. INITIAL LOAD
+// ELEMENTS
 /////////////////////////////
 
-renderPosters(movies);
-
+const searchInput = document.getElementById("searchInput");
+const suggestBox = document.getElementById("suggestBox");
+const container = document.getElementById("postersRow");
 
 /////////////////////////////
-// 5. SEARCH
+// RENDER MOVIES
 /////////////////////////////
 
-searchInput.addEventListener('input', () => {
-  const q = searchInput.value.trim().toLowerCase();
+function renderMovies(list) {
+  container.innerHTML = "";
 
+  list.forEach(movie => {
+    container.innerHTML += `
+      <div class="card">
+        <img src="${movie.poster}" alt="${movie.title}">
+        <h3>${movie.title}</h3>
+        <p>${movie.rating} ⭐</p>
+      </div>
+    `;
+  });
+}
+
+/////////////////////////////
+// INITIAL LOAD
+/////////////////////////////
+
+renderMovies(movies);
+
+/////////////////////////////
+// FILTER BY GENRE
+/////////////////////////////
+
+function showAll() {
+  renderMovies(movies);
+}
+
+function showGenre(genre) {
   const filtered = movies.filter(m =>
-    m.title.toLowerCase().includes(q)
+    m.genre && m.genre.includes(genre)
   );
-
-  renderPosters(filtered);
-});
-
-
-/////////////////////////////
-// 6. URL SEARCH SUPPORT
-/////////////////////////////
-
-const urlQ = new URLSearchParams(location.search).get('q');
-
-if(urlQ){
-  searchInput.value = urlQ;
-  searchInput.dispatchEvent(new Event('input'));
+  renderMovies(filtered);
 }
 
-
 /////////////////////////////
-// 7. NAVIGATION (ID ONLY)
+// SEARCH (LIVE FILTER)
 /////////////////////////////
-
-function goTrailer(id){
-  location.href = `trailer.html?id=${encodeURIComponent(id)}`;
-}
-
-function goReview(id){
-  location.href = `review.html?id=${encodeURIComponent(id)}`;
-}
-
-
-/////////////////////////////
-// 8. ENTER KEY SEARCH
-/////////////////////////////
-
-searchInput.addEventListener('keydown', e => {
-  if(e.key === 'Enter'){
-    location.href = `posters.html?q=${encodeURIComponent(searchInput.value.trim())}`;
-  }
-});
-      const suggestBox = document.getElementById("suggestBox");
 
 searchInput.addEventListener("input", () => {
   const q = searchInput.value.trim().toLowerCase();
 
   if (!q) {
     suggestBox.style.display = "none";
-    renderPosters(movies);
+    renderMovies(movies);
     return;
   }
 
-  const matches = movies.filter(m =>
+  const filtered = movies.filter(m =>
     m.title.toLowerCase().includes(q)
-  ).slice(0, 5); // only top 5 suggestions
+  );
+
+  renderMovies(filtered);
+
+  const matches = filtered.slice(0, 5);
 
   if (matches.length === 0) {
     suggestBox.style.display = "none";
@@ -958,54 +977,45 @@ searchInput.addEventListener("input", () => {
 
   suggestBox.style.display = "block";
 });
-      function selectMovie(id){
-  const movie = movies.find(m => m.id === id);
 
-  // redirect to trailer page (your system)
-  window.location.href = `trailer.html?id=${movie.id}`;
+/////////////////////////////
+// SUGGEST CLICK
+/////////////////////////////
+
+function selectMovie(id) {
+  location.href = `trailer.html?id=${id}`;
 }
-      document.addEventListener("click", (e) => {
-  if (!e.target.closest(".search-box")) {
+
+/////////////////////////////
+// CLOSE SUGGESTIONS
+/////////////////////////////
+
+document.addEventListener("click", (e) => {
+  if (!e.target.closest(".search-wrap")) {
     suggestBox.style.display = "none";
   }
 });
-      function filterByGenre(genre) {
-  return movies.filter(movie =>
-    movie.genre && movie.genre.includes(genre)
-  );
-}
-      function displayMovies(list) {
-  const container = document.getElementById("movieContainer");
 
-  container.innerHTML = "";
+/////////////////////////////
+// URL SEARCH SUPPORT
+/////////////////////////////
 
-  list.forEach(movie => {
-    container.innerHTML += `
-      <div class="movie-card">
-        <img src="${movie.poster}" alt="${movie.title}">
-        <h3>${movie.title}</h3>
-        <p>${movie.rating} ⭐</p>
-      </div>
-    `;
-  });
-}
-     function showGenre(genre) {
-  const filtered = filterByGenre(genre);
-  displayMovies(filtered);
+const urlQ = new URLSearchParams(location.search).get("q");
+
+if (urlQ) {
+  searchInput.value = urlQ;
+  searchInput.dispatchEvent(new Event("input"));
 }
 
-function showAll() {
-  displayMovies(movies);
-}
-      function searchAndFilter(query, genre) {
-  return movies.filter(movie => {
-    const matchName = movie.title.toLowerCase().includes(query.toLowerCase());
-    const matchGenre = !genre || movie.genre.includes(genre);
+/////////////////////////////
+// ENTER KEY SEARCH
+/////////////////////////////
 
-    return matchName && matchGenre;
-  });
-}
-</script>
+searchInput.addEventListener("keydown", e => {
+  if (e.key === "Enter") {
+    location.href = `poster.html?q=${encodeURIComponent(searchInput.value.trim())}`;
+  }
+});
 </body>
 </html>
 
