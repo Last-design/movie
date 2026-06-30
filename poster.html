@@ -857,18 +857,27 @@ function renderMovies(list){
     postersRow.innerHTML += `
       <div class="card">
         <img src="${m.poster}" alt="${m.title}">
+
         <div class="meta">
           <h3>${m.title}</h3>
-          <div>${m.date}</div>
+          <div>${m.date || ""}</div>
           <div class="rating">${stars}</div>
         </div>
+
+        <div class="hover-buttons">
+          <button class="btn" onclick="goTrailer(${m.id})">
+            ▶ Read more...
+          </button>
+        </div>
+
       </div>
     `;
   });
 }
 
-/////////////////////////////
-// INITIAL LOAD
+function goTrailer(id){
+  location.href = `trailer.html?id=${id}`;
+}
 /////////////////////////////
 
 renderMovies(movies);
