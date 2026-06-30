@@ -37,13 +37,7 @@
         border-bottom: 1px solid red;
     }
 
-    .logo {
-        font-size: 28px;
-        font-weight: 600;
-        color: red;
-        text-decoration: none;
-        transition: transform 0.3s ease, color 0.3s ease;
-    }
+
     .logo:hover { transform: rotate(-10deg) scale(1.1); color:#ff4c4c; }
 
     .navbar ul {
@@ -141,6 +135,23 @@
   color:#777;
 }
 
+ .logo {
+  text-decoration: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+}
+
+.movie-name {
+  font-size: 26px;
+  font-weight: 700;
+  color: #ff1f1f;
+}
+
+.slogan {
+  font-size: 12px;
+  color: #aaa;
+}
     .popup {
         display: none;
         position: fixed;
@@ -359,7 +370,10 @@
 </div>
 
 <header>
-    <a href="index.html" class="logo"> MoviePulse247</a>
+   <a href="index.html" class="logo">
+  <span class="movie-name">MoviePulse</span>
+  <span class="slogan">Feel the Beat of Cinema</span>
+</a>
         
  
     <nav class="navbar">
