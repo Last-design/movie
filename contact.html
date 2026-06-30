@@ -176,25 +176,28 @@ nav a.active{
         textarea{
     resize: none;
 }
-        .social-icons{
-    margin-top:20px;
-    display:flex;
-    justify-content:center;
-    gap:18px;
+      .social-icons {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  position: relative;
+  z-index: 9999;
 }
 
-.social-icons a{
-    width:45px;
-    height:45px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background:#222;
-    color:white;
-    border-radius:50%;
-    font-size:18px;
-    transition:0.3s;
-    text-decoration:none;
+.social-icons a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  text-decoration: none;
+  pointer-events: auto;
+  position: relative;
+  z-index: 9999;
+}
+
+.social-icons i {
+  font-size: 22px;
 }
 
 .social-icons a:hover{
@@ -250,17 +253,18 @@ nav a.active{
   <button type="submit">Send Message</button>
 </form>
 
-<p class="social-text">Stay connected with MoviePulse on social media.</p>
-
 <div class="social-icons">
 
   <a href="https://facebook.com" target="_blank" aria-label="Facebook">
     <i class="fab fa-facebook-f"></i>
   </a>
 
- <a href="https://www.google.com" target="_blank">
-  TEST LINK
-</a>
+  <a href="https://www.instagram.com/moviepulse_247"
+     target="_blank"
+     rel="noopener noreferrer"
+     aria-label="Instagram">
+    <i class="fab fa-instagram"></i>
+  </a>
 
   <a href="https://x.com" target="_blank" aria-label="X">
     <i class="fab fa-x-twitter"></i>
