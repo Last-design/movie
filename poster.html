@@ -327,7 +327,12 @@ nav a.active::after{
   </div>
  </footer>
 
-
+<button onclick="showAll()">All</button>
+<button onclick="showGenre('Action')">Action</button>
+<button onclick="showGenre('Horror')">Horror</button>
+<button onclick="showGenre('Animation')">Animation</button>
+<button onclick="showGenre('Superhero')">Superhero</button>
+<button onclick="showGenre('Sci-Fi')">Sci-Fi</button>
 <script>
   // MOVIES ARRAY (now embedded here, no movie.js needed)
 const movies = [
@@ -964,6 +969,42 @@ searchInput.addEventListener("input", () => {
     suggestBox.style.display = "none";
   }
 });
+      function filterByGenre(genre) {
+  return movies.filter(movie =>
+    movie.genre && movie.genre.includes(genre)
+  );
+}
+      function displayMovies(list) {
+  const container = document.getElementById("movieContainer");
+
+  container.innerHTML = "";
+
+  list.forEach(movie => {
+    container.innerHTML += `
+      <div class="movie-card">
+        <img src="${movie.poster}" alt="${movie.title}">
+        <h3>${movie.title}</h3>
+        <p>${movie.rating} ⭐</p>
+      </div>
+    `;
+  });
+}
+     function showGenre(genre) {
+  const filtered = filterByGenre(genre);
+  displayMovies(filtered);
+}
+
+function showAll() {
+  displayMovies(movies);
+}
+      function searchAndFilter(query, genre) {
+  return movies.filter(movie => {
+    const matchName = movie.title.toLowerCase().includes(query.toLowerCase());
+    const matchGenre = !genre || movie.genre.includes(genre);
+
+    return matchName && matchGenre;
+  });
+}
 </script>
 </body>
 </html>
