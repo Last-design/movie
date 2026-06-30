@@ -885,10 +885,10 @@ renderMovies(movies);
 /////////////////////////////
 // FILTER
 /////////////////////////////
-
 function showAll(){
   renderMovies(movies);
 }
+
 function showGenre(genre){
 
   const g = genre.toLowerCase();
@@ -900,10 +900,6 @@ function showGenre(genre){
 
   renderMovies(filtered);
 }
-
-/////////////////////////////
-// SEARCH + LIVE FILTER
-/////////////////////////////
 
 searchInput.addEventListener("input", () => {
 
@@ -937,17 +933,9 @@ searchInput.addEventListener("input", () => {
   suggestBox.style.display = "block";
 });
 
-/////////////////////////////
-// SELECT MOVIE
-/////////////////////////////
-
 function selectMovie(id){
   location.href = `trailer.html?id=${id}`;
 }
-
-/////////////////////////////
-// CLOSE SUGGEST
-/////////////////////////////
 
 document.addEventListener("click", e => {
   if(!e.target.closest(".search-wrap")){
@@ -955,16 +943,11 @@ document.addEventListener("click", e => {
   }
 });
 
-/////////////////////////////
-// ENTER KEY
-/////////////////////////////
-
 searchInput.addEventListener("keydown", e => {
   if(e.key === "Enter"){
-    location.href = `poster.html?q=${searchInput.value}`;
+    location.href = `poster.html?q=${encodeURIComponent(searchInput.value)}`;
   }
 });
-      console.log(movies.map(m => m.genre));
 </script>
 </body>
 </html>
