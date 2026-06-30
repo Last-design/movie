@@ -317,12 +317,12 @@ nav a.active::after{
 </header>
       <!-- ✅ FILTER BUTTONS (PUT HERE) -->
 <div class="filter-bar">
-  <button onclick="showAll()">All</button>
-  <button onclick="showGenre('Action')">Action</button>
-  <button onclick="showGenre('Horror')">Horror</button>
-  <button onclick="showGenre('Animation')">Animation</button>
-  <button onclick="showGenre('Superhero')">Superhero</button>
-  <button onclick="showGenre('Sci-Fi')">Sci-Fi</button>
+<button onclick="showAll()">All</button>
+<button onclick="showGenre('Action')">Action</button>
+<button onclick="showGenre('Horror')">Horror</button>
+<button onclick="showGenre('Animation')">Animation</button>
+<button onclick="showGenre('Sci-Fi')">Sci-Fi</button>
+<button onclick="showGenre('Superhero')">Superhero</button>
 </div>
 
 </section>
@@ -889,11 +889,15 @@ renderMovies(movies);
 function showAll(){
   renderMovies(movies);
 }
-
 function showGenre(genre){
+
+  const g = genre.toLowerCase();
+
   const filtered = movies.filter(m =>
-    m.genre && m.genre.includes(genre)
+    Array.isArray(m.genre) &&
+    m.genre.some(x => x.toLowerCase() === g)
   );
+
   renderMovies(filtered);
 }
 
