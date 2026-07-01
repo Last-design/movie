@@ -2654,74 +2654,98 @@ function loadMain(movie){
   const recommendations = getRecommendations(movie);
 
   document.getElementById("mainArea").innerHTML = `
-    <div class="movie-page">
+  <div class="movie-page">
 
-      <!-- TITLE -->
-      <h1 class="title">${movie.title}</h1>
+    <h1 class="title">${movie.title}</h1>
 
-      <!-- POSTER + ARTICLE -->
-      <div class="content-wrap">
+    <div class="content-wrap">
 
-        <div class="poster-column">
-          <img class="hero-poster" src="${movie.poster}" alt="${movie.title}">
+      <div class="poster-column">
+        <img class="hero-poster" src="${movie.poster}" alt="${movie.title}">
 
-          <div class="movie-rating">
-            ${"⭐".repeat(Math.round(movie.rating || 0))}
-          </div>
+        <div class="movie-rating">
+          ${"⭐".repeat(Math.round(movie.rating || 0))}
         </div>
-
-        <div class="article-side">
-          ${movie.article || ""}
-        </div>
-
       </div>
 
-      <!-- ARTICLE FULL -->
-      <div class="article-full"></div>
-
-      <!-- TRAILER -->
-      <h2 class="section-title">Official Trailer</h2>
-
-      <iframe class="video-frame"
-        src="${movie.trailer}"
-        allowfullscreen>
-      </iframe>
-
-      <!-- SUMMARY -->
-      <div class="summary-box">
-        <h2 class="section-title">Movie Summary</h2>
-        <p>${movie.summary || "No summary available."}</p>
-      </div>
-
-      <!-- STARRING -->
-      <div class="starring-section">
-        <h2 class="section-title">Starring</h2>
-        <p>
-          ${
-            Array.isArray(movie.starring)
-              ? movie.starring.join(", ")
-              : movie.starring || "N/A"
-          }
-        </p>
-      </div>
-
-      <!-- RECOMMENDATIONS -->
-    <h2 class="section-title">Related Movies</h2>
-
-      <div class="recommend-grid">
-        ${recommendations.map(rec => `
-          <div class="recommend-card"
-            onclick="location.href='trailer.html?id=${rec.id}'">
-
-            <img src="${rec.poster}" alt="${rec.title}">
-            <h4>${rec.title}</h4>
-            <small>⭐ ${rec.rating || 0}</small>
-
-          </div>
-        `).join("")}
+      <div class="article-side">
+        ${movie.article || ""}
       </div>
 
     </div>
+
+    <div class="article-full"></div>
+
+    <h2 class="section-title">Official Trailer</h2>
+
+    <iframe
+      class="video-frame"
+      src="${movie.trailer || ""}"
+      allowfullscreen>
+    </iframe>
+
+    <div class="summary-box">
+      <h2 class="section-title">Movie Summary</h2>
+      <p>${movie.summary || "No summary available."}</p>
+    </div>
+
+    <div class="starring-section">
+      <h2 class="section-title">Starring</h2>
+      <p>
+        ${
+          Array.isArray(movie.starring)
+            ? movie.starring.join(", ")
+            : movie.starring || "N/A"
+        }
+      </p>
+    </div>
+
+    <h2 class="section-title">Related Movies</h2>
+
+    <div class="recommend-grid">
+      ${recommendations.related.map(rec => `
+        <div class="recommend-card"
+          onclick="location.href='trailer.html?id=${rec.id}'">
+
+          <img src="${rec.poster}" alt="${rec.title}">
+          <h4>${rec.title}</h4>
+          <small>⭐ ${rec.rating || 0}</small>
+
+        </div>
+      `).join("")}
+    </div>
+
+    <h2 class="section-title">More You May Like</h2>
+
+    <div class="recommend-grid">
+      ${recommendations.more.map(rec => `
+        <div class="recommend-card"
+          onclick="location.href='trailer.html?id=${rec.id}'">
+
+          <img src="${rec.poster}" alt="${rec.title}">
+          <h4>${rec.title}</h4>
+          <small>⭐ ${rec.rating || 0}</small>
+
+        </div>
+      `).join("")}
+    </div>
+
+    <h2 class="section-title">Other Movies</h2>
+
+    <div class="recommend-grid">
+      ${recommendations.others.map(rec => `
+        <div class="recommend-card"
+          onclick="location.href='trailer.html?id=${rec.id}'">
+
+          <img src="${rec.poster}" alt="${rec.title}">
+          <h4>${rec.title}</h4>
+          <small>⭐ ${rec.rating || 0}</small>
+
+        </div>
+      `).join("")}
+    </div>
+
+  </div>
   `;
 }
 
