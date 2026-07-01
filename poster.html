@@ -817,7 +817,6 @@ const movies = [
 
 
 /////////////////////////////
-/////////////////////////////
 // ELEMENTS
 /////////////////////////////
 
@@ -831,28 +830,23 @@ const suggestBox = document.getElementById("suggestBox");
 
 function renderMovies(list){
 
-  postersRow.innerHTML = "";
+  postersRow.innerHTML = list.map(m => `
+    <div class="card">
+      <img src="${m.poster}" alt="${m.title}">
 
-  list.forEach(m => {
-
-    postersRow.innerHTML += `
-      <div class="card">
-        <img src="${m.poster}" alt="${m.title}">
-
-        <div class="meta">
-          <h3>${m.title}</h3>
-          <div>${m.date || ""}</div>
-          <div>${"★".repeat(Math.round(m.rating || 0))}</div>
-        </div>
-
-        <div class="hover-buttons">
-          <button class="btn" onclick="goTrailer(${m.id})">
-            ▶ Read more...
-          </button>
-        </div>
+      <div class="meta">
+        <h3>${m.title}</h3>
+        <div>${m.date || ""}</div>
+        <div>${"★".repeat(Math.round(m.rating || 0))}</div>
       </div>
-    `;
-  });
+
+      <div class="hover-buttons">
+        <button class="btn" onclick="goTrailer(${m.id})">
+          ▶ Read more...
+        </button>
+      </div>
+    </div>
+  `).join("");
 }
 
 /////////////////////////////
@@ -862,7 +856,28 @@ function renderMovies(list){
 renderMovies(movies);
 
 /////////////////////////////
-// SEARCH ONLY (NO FILTER)
+// SHOW ALL
+/////////////////////////////
+
+function showAll(){
+  renderMovies(movies);
+}
+
+/////////////////////////////
+// FILTER BY GENRE (NEW 🔥)
+/////////////////////////////
+
+function showGenre(genre){
+
+  const filtered = movies.filter(m =>
+    m.genre && m.genre.includes(genre)
+  );
+
+  renderMovies(filtered);
+}
+
+/////////////////////////////
+// SEARCH + SUGGESTIONS
 /////////////////////////////
 
 searchInput.addEventListener("input", () => {
@@ -921,7 +936,7 @@ searchInput.addEventListener("keydown", e => {
 });
 
 /////////////////////////////
-// TRAILER NAV
+// NAV TO TRAILER
 /////////////////////////////
 
 function goTrailer(id){
