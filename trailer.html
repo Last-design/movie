@@ -2587,59 +2587,6 @@ function getRecommendations(currentMovie){
 /////////////////////////////
 // RENDER PAGE
 /////////////////////////////
-
-document.getElementById("mainArea").innerHTML = `
-  
-<h1>${current.title}</h1>
-
-<!-- RELATED MOVIES -->
-<h2 class="section-title">Related Movies</h2>
-
-<div class="recommend-grid">
-  ${recommendations.related.map(rec => `
-    <div class="recommend-card"
-      onclick="location.href='trailer.html?id=${rec.id}'">
-
-      <img src="${rec.poster}" alt="${rec.title}">
-      <h4>${rec.title}</h4>
-      <small>⭐ ${rec.rating || 0}</small>
-
-    </div>
-  `).join("")}
-</div>
-
-<!-- MORE YOU MAY LIKE -->
-<h2 class="section-title">More You May Like</h2>
-
-<div class="recommend-grid">
-  ${recommendations.more.map(rec => `
-    <div class="recommend-card"
-      onclick="location.href='trailer.html?id=${rec.id}'">
-
-      <img src="${rec.poster}" alt="${rec.title}">
-      <h4>${rec.title}</h4>
-      <small>⭐ ${rec.rating || 0}</small>
-
-    </div>
-  `).join("")}
-</div>
-
-<!-- OTHER MOVIES -->
-<h2 class="section-title">Other Movies</h2>
-
-<div class="recommend-grid">
-  ${recommendations.others.map(rec => `
-    <div class="recommend-card"
-      onclick="location.href='trailer.html?id=${rec.id}'">
-
-      <img src="${rec.poster}" alt="${rec.title}">
-      <h4>${rec.title}</h4>
-      <small>⭐ ${rec.rating || 0}</small>
-
-    </div>
-  `).join("")}
-</div>
-`;
 /////////////////////////////
 // LOAD MAIN MOVIE PAGE
 /////////////////////////////
