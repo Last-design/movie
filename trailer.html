@@ -2568,14 +2568,43 @@ const current =
 
 /////////////////////////////
 // RECOMMENDATIONS (GENRE BASED)
-function getRecommendations(currentMovie){
+const recommendations = getRecommendations(movie);
 
-  const pool = movies.filter(m => m.id !== currentMovie.id);
+<!-- RELATED -->
+<h2 class="section-title">Related Movies</h2>
+<div class="recommend-grid">
+  ${recommendations.related.map(rec => `
+    <div class="recommend-card"
+      onclick="location.href='trailer.html?id=${rec.id}'">
+      <img src="${rec.poster}" alt="${rec.title}">
+      <h4>${rec.title}</h4>
+    </div>
+  `).join("")}
+</div>
 
-  return pool
-    .sort(() => Math.random() - 0.5)
-    .slice(0, 6);
-}
+<!-- MORE -->
+<h2 class="section-title">More You May Like</h2>
+<div class="recommend-grid">
+  ${recommendations.more.map(rec => `
+    <div class="recommend-card"
+      onclick="location.href='trailer.html?id=${rec.id}'">
+      <img src="${rec.poster}" alt="${rec.title}">
+      <h4>${rec.title}</h4>
+    </div>
+  `).join("")}
+</div>
+
+<!-- ALL REMAINING -->
+<h2 class="section-title">Other Movies </h2>
+<div class="recommend-grid">
+  ${recommendations.allRemaining.map(rec => `
+    <div class="recommend-card"
+      onclick="location.href='trailer.html?id=${rec.id}'">
+      <img src="${rec.poster}" alt="${rec.title}">
+      <h4>${rec.title}</h4>
+    </div>
+  `).join("")}
+</div>
 
 /////////////////////////////
 // LOAD MAIN MOVIE PAGE
