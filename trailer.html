@@ -2570,28 +2570,10 @@ const current =
 // RECOMMENDATIONS (GENRE BASED)
 function getRecommendations(currentMovie){
 
-  if (!currentMovie || !currentMovie.genre) {
-    return movies.slice(0, 6);
-  }
+  const pool = movies.filter(m => m.id !== currentMovie.id);
 
-  const scored = movies
-    .filter(m => m.id !== currentMovie.id)
-    .map(m => {
-      const matchCount = (m.genre || []).filter(g =>
-        (currentMovie.genre || []).includes(g)
-      ).length;
-
-      return { movie: m, score: matchCount };
-    });
-
-  const filtered = scored.filter(x => x.score > 0);
-
-  // fallback if no matches
-  const result = filtered.length ? filtered : scored;
-
-  return result
-    .sort((a, b) => b.score - a.score)
-    .map(x => x.movie)
+  return pool
+    .sort(() => Math.random() - 0.5)
     .slice(0, 6);
 }
 
