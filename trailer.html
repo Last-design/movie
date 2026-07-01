@@ -2568,15 +2568,13 @@ const current =
 
 /////////////////////////////
 // RECOMMENDATIONS (GENRE BASED)
-/////////////////////////////
-
 function getRecommendations(currentMovie){
 
   if (!currentMovie || !currentMovie.genre) {
     return movies.slice(0, 6);
   }
 
-  return movies
+  const scored = movies
     .filter(m => m.id !== currentMovie.id)
     .map(m => {
       const matchCount = (m.genre || []).filter(g =>
@@ -2584,8 +2582,14 @@ function getRecommendations(currentMovie){
       ).length;
 
       return { movie: m, score: matchCount };
-    })
-    .filter(x => x.score > 0)
+    });
+
+  const filtered = scored.filter(x => x.score > 0);
+
+  // fallback if no matches
+  const result = filtered.length ? filtered : scored;
+
+  return result
     .sort((a, b) => b.score - a.score)
     .map(x => x.movie)
     .slice(0, 6);
