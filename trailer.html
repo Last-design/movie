@@ -390,6 +390,25 @@ margin:auto;
     font-weight: 500;
     margin-bottom: 10px;
 }
+  .nav-buttons{
+  display: flex;
+  gap: 10px;
+  margin: 15px 0;
+}
+
+.btn{
+  padding: 10px 14px;
+  background: #111;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+.btn:hover{
+  background: #ff3c3c;
+}
 </style>
 </head>
 
@@ -2744,6 +2763,20 @@ function loadMain(movie){
 /////////////////////////////
 
 loadMain(current);
+  const params = new URLSearchParams(window.location.search);
+const movieId = params.get("id");
+
+const backBtn = document.getElementById("backBtn");
+
+if(movieId){
+  backBtn.href = `movie.html?id=${movieId}`;
+} else {
+  backBtn.href = "/"; // fallback
+}
 </script>
+  <div class="nav-buttons">
+  <a href="/" class="btn">🏠 Home</a>
+  <a id="backBtn" class="btn">⬅️ Back</a>
+</div>
 </body>
 </html>
