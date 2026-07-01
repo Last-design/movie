@@ -2557,6 +2557,7 @@ Sequel To: Based on Minecraft video game universe</i>`
 ];
 /* ===================== URL ID ===================== */
 /////////////////////////////
+///////////////////////////////
 // GET ID FROM URL
 /////////////////////////////
 
@@ -2567,8 +2568,18 @@ const current =
   movies.find(m => String(m.id) === String(id)) || movies[0];
 
 /////////////////////////////
-// RECOMMENDATIONS (GENRE BASED)
-const recommendations = getRecommendations(movie);
+// GET RECOMMENDATIONS
+/////////////////////////////
+
+const recommendations = getRecommendations(current);
+
+/////////////////////////////
+// RENDER PAGE
+/////////////////////////////
+
+document.getElementById("mainArea").innerHTML = `
+  
+<h1>${current.title}</h1>
 
 <!-- RELATED -->
 <h2 class="section-title">Related Movies</h2>
@@ -2595,7 +2606,7 @@ const recommendations = getRecommendations(movie);
 </div>
 
 <!-- ALL REMAINING -->
-<h2 class="section-title">Other Movies </h2>
+<h2 class="section-title">Other Movies</h2>
 <div class="recommend-grid">
   ${recommendations.allRemaining.map(rec => `
     <div class="recommend-card"
@@ -2606,6 +2617,7 @@ const recommendations = getRecommendations(movie);
   `).join("")}
 </div>
 
+`;
 /////////////////////////////
 // LOAD MAIN MOVIE PAGE
 /////////////////////////////
