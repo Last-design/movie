@@ -390,24 +390,27 @@ margin:auto;
     font-weight: 500;
     margin-bottom: 10px;
 }
-  .nav-buttons{
+.nav-buttons{
   display: flex;
-  gap: 10px;
-  margin: 15px 0;
+  justify-content: center;   /* center horizontally */
+  gap: 12px;
+  margin: 20px 0;
 }
 
 .btn{
-  padding: 10px 14px;
-  background: #111;
+  padding: 10px 16px;
+  background: transparent;
   color: #fff;
   text-decoration: none;
+  border: 2px solid red;
   border-radius: 8px;
   font-size: 14px;
   transition: 0.3s;
 }
 
 .btn:hover{
-  background: #ff3c3c;
+  background: red;
+  color: #fff;
 }
 </style>
 </head>
@@ -430,7 +433,7 @@ margin:auto;
 <div id="mainArea"></div>
    <div class="nav-buttons">
   <a href="/" class="btn">🏠 Home</a>
-  <a id="backBtn" class="btn">⬅️ Back</a>
+  <a href="poster.html" class="btn">⬅️ Back</a>
 </div>
    <footer class="site-footer">
   <div class="footer-container">
