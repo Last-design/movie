@@ -679,6 +679,25 @@ nav{
 .slider-wrapper::-webkit-scrollbar-thumb:hover{
     background:#ff2a2a;
 }
+  .scroll-down{
+    text-align:center;
+    margin:20px 0 10px;
+}
+
+.scroll-down i{
+    color:#ff1f1f;
+    font-size:34px;
+    animation:bounce 1.5s infinite;
+}
+
+@keyframes bounce{
+    0%,100%{
+        transform:translateY(0);
+    }
+    50%{
+        transform:translateY(10px);
+    }
+}
 </style>
 </head>
 
@@ -821,6 +840,11 @@ Explore Movies
 </div>
 
 </section>
+ 
+
+<div class="scroll-down">
+    <i class="fa-solid fa-angles-down"></i>
+</div>
 
 <section class="news-section">
 
