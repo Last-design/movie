@@ -2761,18 +2761,18 @@ function loadMain(movie){
 /////////////////////////////
 // INIT PAGE
 /////////////////////////////
+document.addEventListener("DOMContentLoaded", () => {
+  loadMain(current);
 
-loadMain(current);
   const params = new URLSearchParams(window.location.search);
-const movieId = params.get("id");
+  const movieId = params.get("id");
 
-const backBtn = document.getElementById("backBtn");
+  const backBtn = document.getElementById("backBtn");
 
-if(movieId){
-  backBtn.href = `movie.html?id=${movieId}`;
-} else {
-  backBtn.href = "/"; // fallback
-}
+  if (backBtn) {
+    backBtn.href = movieId ? `movie.html?id=${movieId}` : "/";
+  }
+});
 </script>
   <div class="nav-buttons">
   <a href="/" class="btn">🏠 Home</a>
